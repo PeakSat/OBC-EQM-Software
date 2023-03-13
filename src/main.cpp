@@ -14,7 +14,7 @@
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
 
-#define IDLE_TASK_SIZE 4000
+#define IDLE_TASK_SIZE 200
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
