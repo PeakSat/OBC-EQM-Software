@@ -130,6 +130,8 @@ const SYS_TIME_INIT sysTimeInitData =
 
 void SYS_Initialize ( void* data )
 {
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 2.2 deviated in this file.  Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1 */
 
 
     EFC_Initialize();
@@ -171,6 +173,7 @@ void SYS_Initialize ( void* data )
 
     NVIC_Initialize();
 
+    /* MISRAC 2012 deviation block end */
 }
 
 

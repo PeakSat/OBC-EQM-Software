@@ -321,7 +321,7 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '541065216'}
       - type: User
-        attributes: {value: '541454336'}
+        attributes: {value: '541450240'}
   - type: Boolean
     attributes: {id: MPU_Region_0_Enable}
     children:
@@ -470,6 +470,27 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: NVIC_31_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: NVIC_31_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: NVIC_31_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
   - type: Boolean
     attributes: {id: NVIC_35_0_ENABLE}
     children:
@@ -693,14 +714,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A17}
   - type: String
     attributes: {id: PIN_102_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A17/BA1}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_103_FUNCTION_NAME}
     children:
@@ -833,14 +854,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A0/NBS0}
   - type: String
     attributes: {id: PIN_111_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A0/NBS0/DQM0}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_112_DIR}
     children:
@@ -1008,14 +1029,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A2}
   - type: String
     attributes: {id: PIN_120_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A2/SDA0}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_121_FUNCTION_NAME}
     children:
@@ -1050,14 +1071,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A3}
   - type: String
     attributes: {id: PIN_122_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A3/SDA1}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_124_FUNCTION_NAME}
     children:
@@ -1071,14 +1092,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A4}
   - type: String
     attributes: {id: PIN_124_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A4/SDA2}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_125_FUNCTION_NAME}
     children:
@@ -1134,14 +1155,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A5}
   - type: String
     attributes: {id: PIN_127_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A5/SDA3}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_128_FUNCTION_NAME}
     children:
@@ -1190,14 +1211,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A9}
   - type: String
     attributes: {id: PIN_12_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A9/SDA7}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_130_FUNCTION_NAME}
     children:
@@ -1211,14 +1232,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A6}
   - type: String
     attributes: {id: PIN_130_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A6/SDA4}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_131_DIR}
     children:
@@ -1281,14 +1302,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A7}
   - type: String
     attributes: {id: PIN_133_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A7/SDA5}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_13_FUNCTION_NAME}
     children:
@@ -1302,14 +1323,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A8}
   - type: String
     attributes: {id: PIN_13_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A8/SDA6}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_141_FUNCTION_NAME}
     children:
@@ -1400,14 +1421,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A13}
   - type: String
     attributes: {id: PIN_14_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A13/SDA11}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_15_FUNCTION_NAME}
     children:
@@ -1442,14 +1463,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A11}
   - type: String
     attributes: {id: PIN_16_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A11/SDA9}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_17_FUNCTION_NAME}
     children:
@@ -1624,14 +1645,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A16}
   - type: String
     attributes: {id: PIN_22_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A16/BA0}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_23_FUNCTION_NAME}
     children:
@@ -1666,14 +1687,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A14}
   - type: String
     attributes: {id: PIN_24_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A14/SDA12}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_25_DIR}
     children:
@@ -2709,14 +2730,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_NCS1}
   - type: String
     attributes: {id: PIN_69_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS1/SDCS}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_6_DIR}
     children:
@@ -2905,14 +2926,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A10}
   - type: String
     attributes: {id: PIN_76_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A10/SDA8}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_77_FUNCTION_NAME}
     children:
@@ -3290,7 +3311,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '2173173762'}
+        attributes: {id: core, value: '2174484483'}
   - type: Boolean
     attributes: {id: PIOA_CLOCK_ENABLE}
     children:
@@ -3318,7 +3339,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '2743600658'}
+        attributes: {id: core, value: '2744911379'}
   - type: Hex
     attributes: {id: PIOA_SODR_VALUE}
     children:
@@ -3416,7 +3437,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1074487295'}
+        attributes: {id: core, value: '4294926335'}
   - type: Hex
     attributes: {id: PIOC_SODR_VALUE}
     children:
@@ -3465,7 +3486,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '411570672'}
+        attributes: {id: core, value: '411832816'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:
@@ -3654,6 +3675,34 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: PWM0_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
   - type: Integer
     attributes: {id: PWM1_CLOCK_FREQUENCY}
     children:
@@ -3724,13 +3773,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
-  - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
   - type: Integer
     attributes: {id: SLOW_CLK_FREQ}
     children:

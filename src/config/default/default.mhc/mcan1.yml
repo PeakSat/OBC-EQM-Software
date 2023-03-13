@@ -96,7 +96,7 @@ children:
       - type: Dynamic
         attributes: {id: mcan1, value: '1'}
       - type: User
-        attributes: {value: '7'}
+        attributes: {value: '1'}
   - type: Integer
     attributes: {id: DBTP_DTSEG1}
     children:
