@@ -13,6 +13,7 @@
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "LCLDefinitions.hpp"
 
 #define IDLE_TASK_SIZE 200
 
@@ -32,6 +33,9 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
+
+    LCLDefinitions::enableAllLCLs();
+
     initializeTasks();
 
     housekeepingTask.emplace();
