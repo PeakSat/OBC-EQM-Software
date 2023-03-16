@@ -4,7 +4,10 @@
 #include "plib_pio.h"
 
 #define MCP9808_TWI_PORT 2
-#define UART_PERIPHERAL_REGISTER USART1_REGS->US_THR
+
+#define UART_PERIPHERAL_REGISTER UART0_REGS->UART_THR
+
+#define OBC_EQM_LCL
 
 namespace CAN {
     /**

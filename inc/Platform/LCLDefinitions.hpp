@@ -19,13 +19,6 @@ namespace LCLDefinitions {
             LCL(PWM_CHANNEL_3, PWM_CHANNEL_3_MASK, LCL_CAN_1_RST_PIN, LCL_CAN_1_SET_PIN),
             LCL(PWM_CHANNEL_2, PWM_CHANNEL_2_MASK, LCL_CAN_2_RST_PIN, LCL_CAN_2_SET_PIN)
     };
-
-    void enableAllLCLs() {
-        lclArray[NANDFlash].enableLCL();
-        lclArray[MRAM].enableLCL();
-        lclArray[CAN1].enableLCL();
-        lclArray[CAN2].enableLCL();
-    }
 }
 
 
