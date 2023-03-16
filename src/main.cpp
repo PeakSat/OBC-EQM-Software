@@ -7,7 +7,6 @@
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
 #include "HousekeepingTask.hpp"
-#include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "CANGatekeeperTask.hpp"
@@ -34,19 +33,15 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-    LCLDefinitions::enableAllLCLs();
-
     initializeTasks();
 
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
-    updateParametersTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
     tcHandlingTask.emplace();
 
-    updateParametersTask->createTask();
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
     timeBasedSchedulingTask->createTask();
