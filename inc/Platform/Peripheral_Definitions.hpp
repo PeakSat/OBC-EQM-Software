@@ -3,7 +3,7 @@
 #include <cstdint>
 #include "plib_pio.h"
 
-#define MCP9808_TWI_PORT 2
+#define MCP9808_TWI_PORT 1
 
 #define UART_PERIPHERAL_REGISTER UART0_REGS->UART_THR
 

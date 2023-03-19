@@ -1,18 +1,23 @@
 /*******************************************************************************
- System Interrupts File
+  TWIHS Peripheral Library Interface Header File
 
-  Company:
+  Company
     Microchip Technology Inc.
 
-  File Name:
-    interrupt.h
+  File Name
+    plib_twihs1_master.h
 
-  Summary:
-    Interrupt vectors mapping
+  Summary
+    TWIHS Master peripheral library interface.
 
-  Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+  Description
+    This file defines the interface to the TWIHS peripheral library.  This
+    library provides access to and control of the associated peripheral
+    instance.
+
+  Remarks:
+
+*******************************************************************************/
 
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
@@ -36,43 +41,58 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
+*******************************************************************************/
 // DOM-IGNORE-END
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
+#ifndef PLIB_TWIHS1_MASTER_H
+#define PLIB_TWIHS1_MASTER_H
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include <stdint.h>
 
+#include "plib_twihs_master_common.h"
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Handler Routines
+// Section: Interface Routines
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void MemoryManagement_Handler (void);
-void BusFault_Handler (void);
-void UsageFault_Handler (void);
-void DebugMonitor_Handler (void);
-void SysTick_Handler (void);
-void RTC_InterruptHandler (void);
-void UART0_InterruptHandler (void);
-void TWIHS1_InterruptHandler (void);
-void AFEC0_InterruptHandler (void);
-void MCAN0_INT0_InterruptHandler (void);
-void MCAN1_INT0_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+void TWIHS1_Initialize( void );
 
+void TWIHS1_CallbackRegister( TWIHS_CALLBACK callback, uintptr_t contextHandle );
 
+bool TWIHS1_IsBusy( void );
 
-#endif // INTERRUPTS_H
+bool TWIHS1_Read( uint16_t address, uint8_t *pdata, size_t length );
+
+bool TWIHS1_Write( uint16_t address, uint8_t *pdata, size_t length );
+
+bool TWIHS1_WriteRead( uint16_t address, uint8_t *wdata, size_t wlength, uint8_t *rdata, size_t rlength );
+
+TWIHS_ERROR TWIHS1_ErrorGet( void );
+
+bool TWIHS1_TransferSetup( TWIHS_TRANSFER_SETUP* setup, uint32_t srcClkFreq );
+
+void TWIHS1_TransferAbort( void );
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    }
+
+#endif
+// DOM-IGNORE-END
+
+#endif //PLIB_TWIHS1_MASTER_H

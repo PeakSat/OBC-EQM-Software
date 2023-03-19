@@ -159,9 +159,9 @@ void SYS_Initialize ( void* data )
 
     MCAN0_Initialize();
 
-    MCAN1_Initialize();
+	TWIHS1_Initialize();
 
-	TWIHS2_Initialize();
+    MCAN1_Initialize();
 
 
 
