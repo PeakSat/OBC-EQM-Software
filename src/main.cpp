@@ -12,7 +12,8 @@
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
-#include "LCLDefinitions.hpp"
+#include "NANDTask.hpp"
+#include "MRAMTask.hpp"
 
 #define IDLE_TASK_SIZE 200
 
@@ -41,6 +42,8 @@ extern "C" void main_cpp() {
     canGatekeeperTask.emplace();
     canTestTask.emplace();
     tcHandlingTask.emplace();
+    nandTask.emplace();
+    mramTask.emplace();
 
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
@@ -48,6 +51,8 @@ extern "C" void main_cpp() {
     tcHandlingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
+    nandTask->createTask();
+    mramTask->createTask();
 
     vTaskStartScheduler();
 
