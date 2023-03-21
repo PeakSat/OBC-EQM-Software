@@ -155,6 +155,8 @@ void SYS_Initialize ( void* data )
 
     AFEC0_Initialize();
 
+    SMC_Initialize();
+
 	UART0_Initialize();
 
     MCAN0_Initialize();

@@ -45,6 +45,9 @@
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f15" displayName="smc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/smc/plib_smc.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.h</itemPath>
             </logicalFolder>
@@ -265,6 +268,9 @@
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f15" displayName="smc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/smc/plib_smc.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.c</itemPath>
             </logicalFolder>
@@ -317,6 +323,7 @@
         <itemPath>../src/config/default/default.mhc/twihs1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/smc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
