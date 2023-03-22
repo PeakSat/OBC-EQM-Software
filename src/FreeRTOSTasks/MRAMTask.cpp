@@ -32,7 +32,7 @@ void MRAMTask::execute() {
     mram.mramWriteByte(areYouAliveAddress, areYouAliveValue);
 
     uint32_t randomAddressOffset = 0;
-    uint8_t randomValueOffset = 0;
+    uint8_t randomValueOffset = 0, readData = 0;
 
     while (true) {
         randomAddressOffset++;
@@ -47,8 +47,10 @@ void MRAMTask::execute() {
         bool readWasCorrect = true;
         if (isMRAMAlive()) {
             for (uint8_t address = 0; address < 150; address++) {
-                if (mram.mramReadByte(randomAddressOffset + address) != randomValueOffset + address) {
-                    LOG_ERROR << "MRAM: address " << (randomAddressOffset + address) << " had a wrong value!";
+                readData = mram.mramReadByte(randomAddressOffset + address);
+                if (readData != (randomValueOffset + address)) {
+                    LOG_ERROR << "MRAM: offset = " << randomAddressOffset << ",value = " << address
+                        << " had a wrong value = " << readData;
                     readWasCorrect = false;
                 }
             }
@@ -60,10 +62,10 @@ void MRAMTask::execute() {
             LOG_INFO << "MRAM read and write test failed";
         }
 
-        if(randomAddressOffset > (areYouAliveAddress - 200)) {
+        if (randomAddressOffset > (areYouAliveAddress - 200)) {
             randomAddressOffset = 0;
         }
-        if(randomValueOffset++ > 200) {
+        if (randomValueOffset > 100) {
             randomAddressOffset = 0;
         }
 
