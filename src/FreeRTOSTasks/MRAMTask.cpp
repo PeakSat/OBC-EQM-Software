@@ -31,12 +31,12 @@ void MRAMTask::execute() {
 
     mram.mramWriteByte(areYouAliveAddress, areYouAliveValue);
 
-    uint32_t randomAddressOffset;
-    uint8_t randomValueOffset;
+    uint32_t randomAddressOffset = 0;
+    uint8_t randomValueOffset = 0;
 
     while (true) {
-        randomAddressOffset = rand() % (areYouAliveAddress - 200);
-        randomValueOffset = rand() % 100;
+        randomAddressOffset++;
+        randomValueOffset++;
 
         if (isMRAMAlive()) {
             for (uint8_t address = 0; address < 150; address++) {
@@ -58,6 +58,13 @@ void MRAMTask::execute() {
             LOG_INFO << "MRAM read and write test succeeded";
         } else {
             LOG_INFO << "MRAM read and write test failed";
+        }
+
+        if(randomAddressOffset > (areYouAliveAddress - 200)) {
+            randomAddressOffset = 0;
+        }
+        if(randomValueOffset++ > 200) {
+            randomAddressOffset = 0;
         }
 
         vTaskResume(NANDTask::nandTaskHandle);
