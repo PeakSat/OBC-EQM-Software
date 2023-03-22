@@ -87,13 +87,13 @@ void NANDTask::execute() {
                     etl::to_string(dataRead[i], stringReadWrite, true);
                     stringReadWrite.append(" ");
                 }
-//                LOG_DEBUG << "Read NAND after writing: " << stringReadWrite.c_str();
 
                 // check if write-read was correct
                 if (std::equal(std::begin(dataRead), std::end(dataRead), dataWrite)) {
                     LOG_INFO << "NAND read and write test succeeded";
                 } else {
                     LOG_INFO << "NAND read and write test failed";
+                    LOG_DEBUG << "NAND read: " << stringReadWrite.c_str();
                 }
 
                 break;
@@ -121,6 +121,11 @@ void NANDTask::execute() {
             }
         }
 
+        uint8_t dataErase[20] = {};
+        for (uint8_t i = 0; i < 20; i++) {
+            dataErase[i] = 255;
+        }
+
         /* READ */
         for (failedTries = 0; failedTries < 3;) {
             bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
@@ -130,9 +135,11 @@ void NANDTask::execute() {
                     etl::to_string(dataRead[i], stringReadErase, true);
                     stringReadErase.append(" ");
                 }
-//                LOG_DEBUG << "Read NAND after erasing: " << stringReadErase.c_str();
                 if (std::equal(std::begin(dataRead), std::end(dataRead), dataWrite)) {
                     LOG_INFO << "NAND erase test failed";
+                } else if (!std::equal(std::begin(dataRead), std::end(dataRead), dataErase)) {
+                    LOG_INFO << "NAND erase test failed";
+                    LOG_DEBUG << "Read NAND after erasing: " << stringReadErase.c_str();
                 } else {
                     LOG_INFO << "NAND erase test succeeded";
                 }
