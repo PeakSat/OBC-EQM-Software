@@ -35,20 +35,15 @@ extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
     initializeTasks();
-
+    tcHandlingTask.emplace();
     housekeepingTask.emplace();
-    timeBasedSchedulingTask.emplace();
-    statisticsReportingTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
-    tcHandlingTask.emplace();
     nandTask.emplace();
     mramTask.emplace();
 
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
     tcHandlingTask->createTask();
+    housekeepingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
     nandTask->createTask();
