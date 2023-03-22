@@ -4,12 +4,11 @@
 
 bool MRAMTask::isMRAMAlive() {
 
-    for(uint8_t numberOfAttempts = 0; numberOfAttempts < 2; numberOfAttempts++) {
-        if(mram.mramReadByte(areYouAliveAddress) == areYouAliveValue) {
+    for (uint8_t numberOfAttempts = 0; numberOfAttempts < 2; numberOfAttempts++) {
+        if (mram.mramReadByte(areYouAliveAddress) == areYouAliveValue) {
             return true;
-        }
-        else {
-            if(numberOfAttempts == 0) {
+        } else {
+            if (numberOfAttempts == 0) {
                 mramLCL.enableLCL();
                 LOG_INFO << "MRAM was sleeping!";
             }
@@ -45,12 +44,20 @@ void MRAMTask::execute() {
             }
         }
 
+        bool readWasCorrect = true;
         if (isMRAMAlive()) {
             for (uint8_t address = 0; address < 150; address++) {
-                if(mram.mramReadByte(randomAddressOffset + address) != randomValueOffset + address) {
-                    LOG_ERROR << "MRAM: read wrong value!";
+                if (mram.mramReadByte(randomAddressOffset + address) != randomValueOffset + address) {
+                    LOG_ERROR << "MRAM: address " << (randomAddressOffset + address) << " had a wrong value!";
+                    readWasCorrect = false;
                 }
             }
+        }
+
+        if (readWasCorrect) {
+            LOG_INFO << "MRAM read and write test succeeded";
+        } else {
+            LOG_INFO << "MRAM read and write test failed";
         }
 
         vTaskResume(NANDTask::nandTaskHandle);
