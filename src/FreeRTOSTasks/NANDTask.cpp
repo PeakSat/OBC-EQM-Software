@@ -16,7 +16,7 @@ void NANDTask::execute() {
     uint8_t failedTries = 0;
 
     /* INITIALIZE & STATUS */
-    for (failedTries = 0; failedTries < 3;){
+    for (failedTries = 0; failedTries < 3;) {
         uint8_t status = 1;
         status = mt29f.resetNAND();
         if (status != 0) {
@@ -30,7 +30,7 @@ void NANDTask::execute() {
     }
     while (1) {
         /* ID */
-        for (failedTries = 0; failedTries < 3;){
+        for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
                 uint8_t id[8] = {};
                 mt29f.readNANDID(id);
@@ -55,7 +55,7 @@ void NANDTask::execute() {
             dataWrite[i] = i + 1;
         }
 
-        uint32_t writePosition = rand() % (1105920*10);
+        uint32_t writePosition = rand() % (1105920 * 10);
         LOG_DEBUG << "Write address is: " << writePosition;
 
         for (failedTries = 0; failedTries < 3;) {
