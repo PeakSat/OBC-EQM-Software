@@ -42,4 +42,4 @@ namespace CAN {
 /**
  * Used to control COBS Encoding for Log Messages in the UART Gatekeeper task.
  */
-inline const bool LogsAreCOBSEncoded = false;
+inline const bool LogsAreCOBSEncoded = true;
