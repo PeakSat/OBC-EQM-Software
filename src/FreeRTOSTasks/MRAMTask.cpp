@@ -35,8 +35,6 @@ void MRAMTask::execute() {
     uint8_t randomValueOffset = 0, readData = 0;
 
     while (true) {
-        randomAddressOffset++;
-        randomValueOffset++;
 
         if (isMRAMAlive()) {
             for (uint8_t address = 0; address < 150; address++) {
