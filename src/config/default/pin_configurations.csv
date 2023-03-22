@@ -57,7 +57,7 @@
 67,PD19,MEM_NAND_ENABLE_1,EBI_NCS3,n/a,n/a,No,Disabled,No,No,Disabled,Low
 68,PA12,MEM_NAND_BUSY_1,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 69,PD18,MEM_NAND_ENABLE_2,EBI_NCS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
-70,PA27,MEM_NAND_WR_PROT,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
+70,PA27,MEM_NAND_WR_PROT,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 71,PD28,I2C_MTQ_SCK,TWIHS2_TWCK2,n/a,n/a,No,Disabled,No,No,Disabled,Low
 73,PA5,CAN_FAULT_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 74,PD17,CAN_SILENT_2,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
