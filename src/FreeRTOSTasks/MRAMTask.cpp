@@ -66,7 +66,7 @@ void MRAMTask::execute() {
             randomAddressOffset = 0;
         }
         if (randomValueOffset > 100) {
-            randomAddressOffset = 0;
+            randomValueOffset = 0;
         }
 
         vTaskResume(NANDTask::nandTaskHandle);
