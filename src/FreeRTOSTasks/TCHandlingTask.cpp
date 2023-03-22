@@ -4,6 +4,7 @@
 #include <MessageParser.hpp>
 #include "COBS.hpp"
 #include "task.h"
+#include "CAN/ApplicationLayer.hpp"
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>),
@@ -65,6 +66,12 @@ void TCHandlingTask::execute() {
 
         LOG_DEBUG << "Received new TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
 
-        MessageParser::execute(ecssTC);
+        if (ecssTC.applicationId == CAN::NodeID) {
+            MessageParser::execute(ecssTC);
+        }
+        else {
+            auto destination = static_cast<CAN::NodeIDs>(ecssTC.applicationId);
+            CAN::Application::createPacketMessage(destination, false, cobsDecodedMessage, Message::TC, false);
+        }
     }
 }
