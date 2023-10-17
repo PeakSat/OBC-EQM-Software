@@ -7,7 +7,7 @@ from conan.tools.files import copy
 from conan.tools.scm import Git
 
 
-class OBCSoftwareRecipe(ConanFile):
+class EQMSoftwareRecipe(ConanFile):
     name = "obc-sw"
     version = "1.0"
     revision_mode = "scm"
