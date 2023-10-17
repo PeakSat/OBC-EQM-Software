@@ -8,7 +8,7 @@ from conan.tools.scm import Git
 
 
 class EQMSoftwareRecipe(ConanFile):
-    name = "obc-sw"
+    name = "obc-adcs-eqm-sw"
     version = "1.0"
     revision_mode = "scm"
 
