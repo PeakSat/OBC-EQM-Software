@@ -16,7 +16,7 @@ class EQMSoftwareRecipe(ConanFile):
     license = "MIT"
     author = "SpaceDot - AcubeSAT, acubesat.obc@spacedot.gr"
     url = "gitlab.com/acubesat/obc/ecss-services"
-    description = "ECSS Services implementation for the AcubeSAT nanosatellite"
+    description = "EQM Software for OBC-ADCS campaign test"
     topics = ("satellite", "acubesat", "obc", "obc-software")
 
     # Binary configuration
