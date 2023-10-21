@@ -7,16 +7,16 @@ from conan.tools.files import copy
 from conan.tools.scm import Git
 
 
-class OBCSoftwareRecipe(ConanFile):
-    name = "obc-sw"
+class EQMSoftwareRecipe(ConanFile):
+    name = "obc-adcs-eqm-sw"
     version = "1.0"
     revision_mode = "scm"
 
     # Optional metadata
     license = "MIT"
     author = "SpaceDot - AcubeSAT, acubesat.obc@spacedot.gr"
-    url = "gitlab.com/acubesat/obc/ecss-services"
-    description = "ECSS Services implementation for the AcubeSAT nanosatellite"
+    url = "https://gitlab.com/acubesat/obc/environmental-campaign/obc-eqm-software/"
+    description = "EQM Software for OBC-ADCS campaign test"
     topics = ("satellite", "acubesat", "obc", "obc-software")
 
     # Binary configuration
