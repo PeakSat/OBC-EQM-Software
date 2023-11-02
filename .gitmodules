@@ -1,4 +1,4 @@
 [submodule "lib/cobs-c"]
-	path = lib/cobs-c
-	url = git@github.com:cmcqueen/cobs-c.git
+    path = lib/cobs-c
+    url = git@github.com:cmcqueen/cobs-c.git
 
