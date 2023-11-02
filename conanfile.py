@@ -33,10 +33,10 @@ class EQMSoftwareRecipe(ConanFile):
             del self.options.fPIC
 
     def source(self):
-        # git = Git(self)
-        # git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
-        # self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
-        # self.run("cd lib/cross-platform-software && git checkout campaign-obc")
+        git = Git(self)
+        git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
+        self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
+        self.run("cd lib/cross-platform-software && git checkout campaign-obc")
         git = Git(self)
         git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
         self.run("cd lib/atsam-component-drivers && git checkout NAND-implementation")
