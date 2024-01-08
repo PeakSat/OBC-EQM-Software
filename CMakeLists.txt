@@ -65,6 +65,8 @@ include_directories(lib/atsam-component-drivers/SMC/inc)
 include_directories(lib/atsam-component-drivers/MRAM/inc)
 include_directories(lib/atsam-component-drivers/LCL/inc)
 include_directories(lib/atsam-component-drivers/NANDFlash/inc)
+include_directories(lib/atsam-component-drivers/NANDFlash/MT29F_Nand_Driver_Micron)
+include_directories(lib/atsam-component-drivers/NANDFlash/src)
 include_directories(lib/cross-platform-software)
 add_subdirectory(lib/cross-platform-software)
 
