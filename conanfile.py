@@ -8,16 +8,16 @@ from conan.tools.scm import Git
 
 
 class EQMSoftwareRecipe(ConanFile):
-    name = "obc-adcs-eqm-sw"
+    name = "obc-eqm-sw"
     version = "1.0"
     revision_mode = "scm"
 
     # Optional metadata
     license = "MIT"
     author = "SpaceDot - AcubeSAT, acubesat.obc@spacedot.gr"
-    url = "https://gitlab.com/acubesat/obc/environmental-campaign/obc-eqm-software/"
-    description = "EQM Software for OBC-ADCS campaign test"
-    topics = ("satellite", "acubesat", "obc", "obc-software")
+    url = "https://github.com/PeakSat/OBC-EQM-Software"
+    description = "EQM Software for OBCcampaign test"
+    topics = ("satellite", "peaksat", "obc", "obc-software")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
@@ -34,15 +34,11 @@ class EQMSoftwareRecipe(ConanFile):
 
     def source(self):
         git = Git(self)
-        git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
-        self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
-        self.run("cd lib/cross-platform-software && git checkout campaign-obc")
+        git.clone(url="git@github.com:cmcqueen/cobs-c.git", target=join(str(self.source_folder), "lib/cobs-c"))
         git = Git(self)
         git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
         self.run("cd lib/atsam-component-drivers")
         self.run("git checkout NAND-partial-implementation")
-        self.run("git clean -fdx")
-        self.run("git reset --hard HEAD")
 
     def layout(self):
         cmake_layout(self)
