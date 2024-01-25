@@ -13,9 +13,10 @@ find_package(ecss-services CONFIG REQUIRED COMPONENTS common)
 
 include_directories(.)
 include_directories(inc)
-include_directories(inc/Platform)
 include_directories(inc/FreeRTOSTasks)
+include_directories(inc/Platform)
 include_directories(inc/Platform/Parameters)
+include_directories(inc/Platform/CAN)
 include_directories(inc/Helpers)
 include_directories(src)
 include_directories(src/config)
@@ -65,8 +66,9 @@ include_directories(lib/atsam-component-drivers/SMC/inc)
 include_directories(lib/atsam-component-drivers/MRAM/inc)
 include_directories(lib/atsam-component-drivers/LCL/inc)
 include_directories(lib/atsam-component-drivers/NANDFlash/inc)
-include_directories(lib/cross-platform-software)
-add_subdirectory(lib/cross-platform-software)
+include_directories(lib/atsam-component-drivers/NANDFlash/MT29F_Nand_Driver_Micron)
+include_directories(lib/atsam-component-drivers/NANDFlash/src)
+include_directories(lib/cobs-c)
 
 file(GLOB_RECURSE DRIVER_SOURCES "lib/atsam-component-drivers/MCP9808/*.cpp" "lib/atsam-component-drivers/LCL/*.cpp"
         "lib/atsam-component-drivers/NANDFlash/*.cpp")
@@ -74,9 +76,9 @@ file(GLOB_RECURSE SOURCES "src/*.c" "src/*.cpp" "lib/SEGGER/RTT/*.c" "AutoGenera
 file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 file(GLOB_RECURSE EXTRA_SOURCES "lib/cobs-c/cobs.c" "lib/cobs-c/cobsr.c")
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES} ${EXTRA_SOURCES})
 
-target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE common etl log_common)
 
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
