@@ -3,11 +3,11 @@
 void initializeTasks() {
     uartGatekeeperTask.emplace();
     timeKeepingTask.emplace();
-    ambientTemperatureTask.emplace();
+//    ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     mcuTemperatureTask.emplace();
 
-    ambientTemperatureTask->createTask();
+//    ambientTemperatureTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
     uartGatekeeperTask->createTask();

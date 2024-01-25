@@ -39,14 +39,14 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
-    nandTask.emplace();
+//    nandTask.emplace();
     mramTask.emplace();
 
     tcHandlingTask->createTask();
     housekeepingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
-    nandTask->createTask();
+//    nandTask->createTask();
     mramTask->createTask();
 
     vTaskStartScheduler();

@@ -7,9 +7,10 @@ void CANTestTask::execute() {
         frame.data.at(i) = i;
     }
 
+    String<ECSSMaxMessageSize> testPayload("WHO LIVES IN A PINEAPPLE UNDER THE SEA?");
     while (true) {
-        CAN::Application::sendPingMessage(CAN::ADCS, false);
-        canGatekeeperTask->send(frame);
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload.data(), false);
+        xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
