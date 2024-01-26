@@ -9,7 +9,7 @@ void CANTestTask::execute() {
 
     String<ECSSMaxMessageSize> testPayload("WHO LIVES IN A PINEAPPLE UNDER THE SEA?");
     while (true) {
-        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload.data(), false);
+        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload.data(), false);
         xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
