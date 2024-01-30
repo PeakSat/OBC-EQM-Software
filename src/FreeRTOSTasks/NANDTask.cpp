@@ -115,7 +115,7 @@ void NANDTask::execute() {
         }
         /* ERASE */
         for (failedTries = 0; failedTries < 3;) {
-            uint8_t success = blabla.eraseBlock(0, BLOCK);
+            uint8_t success = blabla.eraseBlock(1, BLOCK);
             if (!success) {
                 LOG_ERROR << "Failed to erase NAND block";
                 failedTries++;

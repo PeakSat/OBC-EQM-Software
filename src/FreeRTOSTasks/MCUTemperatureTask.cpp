@@ -1,7 +1,6 @@
 #include "MCUTemperatureTask.hpp"
 
 void MCUTemperatureTask::execute() {
-    AFEC0_ConversionStart();
     while (true) {
         AFEC0_ConversionStart();
         vTaskDelay(pdMS_TO_TICKS(1));

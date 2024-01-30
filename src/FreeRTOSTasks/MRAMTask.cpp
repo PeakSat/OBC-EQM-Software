@@ -67,8 +67,8 @@ void MRAMTask::execute() {
             randomValueOffset = 0;
         }
 
-        vTaskResume(NANDTask::nandTaskHandle);
-        vTaskSuspend(NULL);
+//        vTaskResume(NANDTask::nandTaskHandle);
+//        vTaskSuspend(NULL);
 
         vTaskDelay(DelayMs);
     }
