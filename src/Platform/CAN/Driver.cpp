@@ -157,12 +157,12 @@ void CAN::Driver::send(const CAN::Frame &message) {
     Driver::txFifo.dlc = Driver::convertLengthToDLC(message.data.size());
 
     std::copy(message.data.begin(), message.data.end(), Driver::txFifo.data);
-    MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
-    MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
+
+
     if (AcubeSATParameters::obcCANBUSActive.getValue() == Main) {
-
+        MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
     } else {
-
+        MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
     }
 }
 

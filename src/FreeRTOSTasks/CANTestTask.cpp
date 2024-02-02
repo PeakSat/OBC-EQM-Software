@@ -7,9 +7,17 @@ void CANTestTask::execute() {
         frame.data.at(i) = i;
     }
 
-    String<ECSSMaxMessageSize> testPayload("WHO LIVES IN A PINEAPPLE UNDER THE SEA?");
+    String<ECSSMaxMessageSize> testPayload1("WHO LIVES IN A PINEAPPLE UNDER THE SEA?");
+
+    String<ECSSMaxMessageSize> testPayload2("Giati?");
+
     while (true) {
-        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload.data(), false);
+        AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Main);
+        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload1.data(), false);
+
+        AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Redundant);
+        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload2.data(), false);
+
         xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
