@@ -18,7 +18,7 @@ void CANTestTask::execute() {
         AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Redundant);
         CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload2.data(), false);
 
-        xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
+//        xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

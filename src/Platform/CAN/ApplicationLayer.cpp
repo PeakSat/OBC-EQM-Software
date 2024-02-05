@@ -185,8 +185,8 @@ namespace CAN::Application {
     void parseMessage(const CAN::Frame &message) {
         uint32_t id = filterMessageID(message.id);
         if (id == Heartbeat) {
-//            registerHeartbeat();
-        } else if (id == BusSwitchover) {
+            registerHeartbeat();
+        } else if (idy == BusSwitchover) {
             switchBus(static_cast<Driver::ActiveBus>(message.data[0]));
         } else if (id == UTCTime) {
 //            registerUTCTime();
