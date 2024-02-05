@@ -71,7 +71,7 @@ private:
 
 
 
-    const static inline uint16_t TaskStackDepth = 1800;
+    const static inline uint16_t TaskStackDepth = 1300;
 
     StackType_t taskStack[TaskStackDepth]{};
 
