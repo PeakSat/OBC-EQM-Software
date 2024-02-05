@@ -7,7 +7,7 @@
 
 void NANDTask::execute() {
 
-    MT29F blabla(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
+    MT29F blabla(SMC::NCS3, PIO_PIN_PD23, MEM_NAND_WR_ENABLE_PIN);
 
     LCL &nandLCL = LCLDefinitions::lclArray[LCLDefinitions::NANDFlash];
 
