@@ -6,7 +6,9 @@
 #include "queue.h"
 #include "Platform/Peripheral_Definitions.hpp"
 #include "CAN/TPProtocol.hpp"
+#ifdef OBC_EQM_LCL
 #include "LCLDefinitions.hpp"
+#endif
 
 /**
  * Contains functionality of a Gatekeeper Task for the CAN Bus. It has the sole access to CAN, to avoid any
@@ -71,7 +73,7 @@ private:
 
     const static inline uint16_t TaskStackDepth = 1800;
 
-    StackType_t taskStack[TaskStackDepth];
+    StackType_t taskStack[TaskStackDepth]{};
 
     CAN::Driver::ActiveBus ActiveBus = CAN::Driver::ActiveBus::Main;
 
