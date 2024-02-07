@@ -8,10 +8,17 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
                                        &outgoingQueueBuffer);
     vQueueAddToRegistry(outgoingQueue, "CAN Outgoing");
+    configASSERT(outgoingQueue);
 
-    incomingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), incomingQueueStorageArea,
-                                       &incomingQueueBuffer);
-    vQueueAddToRegistry(incomingQueue, "CAN Incoming");
+    incomingSFQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), incomingSFQueueStorageArea,
+                                         &incomingSFQueueBuffer);
+    vQueueAddToRegistry(incomingSFQueue, "CAN Incoming SF");
+    configASSERT(incomingSFQueue);
+
+    incomingMFQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), incomingSFQueueStorageArea,
+                                         &incomingMFQueueBuffer);
+    vQueueAddToRegistry(incomingSFQueue, "CAN Incoming MF");
+    configASSERT(incomingMFQueue);
 }
 
 void CANGatekeeperTask::execute() {
@@ -23,18 +30,31 @@ void CANGatekeeperTask::execute() {
     PIO_PinWrite(CAN::CAN_SILENT_1, false);
     PIO_PinWrite(CAN::CAN_SILENT_2, false);
 
-    CAN::Frame message = {};
+    CAN::Frame out_message = {};
+    CAN::Frame in_message = {};
+
+    uint32_t ulNotifiedValue;
 
     while (true) {
-        if(xTaskGetTickCount() - lastTransmissionTime > 8000) {
+        xTaskNotifyWait(0, 0, &ulNotifiedValue, portMAX_DELAY);
+
+        if (xTaskGetTickCount() - lastTransmissionTime > 8000) {
             LOG_ERROR << "Resetting CAN LCLs";
             LCLDefinitions::lclArray[LCLDefinitions::CAN1].enableLCL();
             LCLDefinitions::lclArray[LCLDefinitions::CAN2].enableLCL();
             MCAN0_Initialize();
             MCAN1_Initialize();
         }
-        xQueueReceive(outgoingQueue, &message, portMAX_DELAY);
 
-        CAN::Driver::send(message);
+        if (getIncomingSFMessagesCount()) {
+            xQueueReceive(incomingSFQueue, &in_message, portMAX_DELAY);
+            CAN::TPProtocol::processSingleFrame(in_message);
+        }
+        CAN::TPProtocol::processMultipleFrames();
+
+        if (uxQueueMessagesWaiting(outgoingQueue)) {
+            xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
+            CAN::Driver::send(out_message);
+        }
     }
 }
