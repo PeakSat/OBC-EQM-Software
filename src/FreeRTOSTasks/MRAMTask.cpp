@@ -23,7 +23,7 @@ bool MRAMTask::isMRAMAlive() {
 
 void MRAMTask::execute() {
 
-    vTaskSuspend(NULL);
+//    vTaskSuspend(NULL);
 
     mramLCL.enableLCL();
 

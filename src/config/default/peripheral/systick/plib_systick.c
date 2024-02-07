@@ -223,17 +223,17 @@ void SYSTICK_TimerCallbackSet ( SYSTICK_CALLBACK callback, uintptr_t context )
    systick.context = context;
 }
 
-void __attribute__((used)) SysTick_Handler(void)
-{
-   /* Additional temporary variable used to prevent MISRA violations (Rule 13.x) */
-   uintptr_t context = systick.context;
-
-   /* Reading control register clears the count flag */
-   (void)SysTick->CTRL;
-
-   systick.tickCounter++;
-   if(systick.callback != NULL)
-   {
-       systick.callback(context);
-   }
-}
+//void __attribute__((used)) SysTick_Handler(void)
+//{
+//   /* Additional temporary variable used to prevent MISRA violations (Rule 13.x) */
+//   uintptr_t context = systick.context;
+//
+//   /* Reading control register clears the count flag */
+//   (void)SysTick->CTRL;
+//
+//   systick.tickCounter++;
+//   if(systick.callback != NULL)
+//   {
+//       systick.callback(context);
+//   }
+//}
