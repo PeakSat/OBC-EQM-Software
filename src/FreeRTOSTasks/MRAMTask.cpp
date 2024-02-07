@@ -23,7 +23,7 @@ bool MRAMTask::isMRAMAlive() {
 
 void MRAMTask::execute() {
 
-//    vTaskSuspend(NULL);
+    vTaskSuspend(NULL);
 
     mramLCL.enableLCL();
 
@@ -67,8 +67,8 @@ void MRAMTask::execute() {
             randomValueOffset = 0;
         }
 
-//        vTaskResume(NANDTask::nandTaskHandle);
-//        vTaskSuspend(NULL);
+        vTaskResume(NANDTask::nandTaskHandle);
+        vTaskSuspend(NULL);
 
         vTaskDelay(DelayMs);
     }
