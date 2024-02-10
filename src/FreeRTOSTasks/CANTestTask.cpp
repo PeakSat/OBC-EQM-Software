@@ -12,13 +12,16 @@ void CANTestTask::execute() {
     String<ECSSMaxMessageSize> testPayload2("Giati?");
 
     while (true) {
-        AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Main);
-        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload1.data(), false);
+        if(AcubeSATParameters::obcCANBUSActive.getValue() == CAN::Driver::ActiveBus::Redundant) {
+            AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Main);
+            CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload1.data(), false);
+        } else {
+            AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Redundant);
+            CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload2.data(), false);
+        }
 
-        AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Redundant);
-        CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload2.data(), false);
 
 //        xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(5000));
     }
 }
