@@ -5,6 +5,19 @@
 #include "COBS.hpp"
 #include "task.h"
 #include "CAN/ApplicationLayer.hpp"
+#include "LCLDefinitions.hpp"
+#include "AmbientTemperatureTask.hpp"
+#include "CANGatekeeperTask.hpp"
+#include "CANTestTask.hpp"
+#include "HousekeepingTask.hpp"
+#include "MCUTemperatureTask.hpp"
+#include "MRAMTask.hpp"
+#include "NANDTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "TimeKeepingTask.hpp"
+#include "UARTGatekeeperTask.hpp"
+#include "LCL.hpp"
+
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>),
@@ -26,6 +39,7 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
     UART0_Read(&byteIn, sizeof(byteIn));
 }
+
 
 void TCHandlingTask::resetInput() {
     new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
@@ -54,24 +68,27 @@ void TCHandlingTask::execute() {
     while (true) {
         xQueueReceive(messageQueueHandle, static_cast<void *>(&messageOut), portMAX_DELAY);
 
-        // xQueueReceive does a low-level copy of the message string, so we need to call
-        // etl::string::repair() to rearrange the string pointers and prevent memory errors.
-        messageOut.repair();
-        auto cobsDecodedMessage = COBSdecode<MaxUsartTCSize>(messageOut);
+        LOG_DEBUG << "TURNING OFF OBC MAIN MCU";
 
-        uint8_t messageLength = cobsDecodedMessage.size();
-        uint8_t *ecssTCBytes = reinterpret_cast<uint8_t *>(cobsDecodedMessage.data());
+        PIO_PinOutputEnable(ADM_DEPLOY_1_PIN);
+        PIO_PinWrite(ADM_DEPLOY_1_PIN, true);
 
-        auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
+        vTaskSuspend(ambientTemperatureTask->taskHandle);
+        vTaskSuspend(mcuTemperatureTask->taskHandle);
+        vTaskSuspend(nandTask->nandTaskHandle);
+        vTaskSuspend(mramTask->mramTaskHandle);
+        vTaskSuspend(uartGatekeeperTask->taskHandle);
+        vTaskSuspend(housekeepingTask->taskHandle);
+        vTaskSuspend(timeBasedSchedulingTask->taskHandle);
+        vTaskSuspend(timeKeepingTask->taskHandle);
+        vTaskSuspend(canTestTask->taskHandle);
+        vTaskSuspend(canGatekeeperTask->taskHandle);
 
-        LOG_DEBUG << "Received new TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
 
-        if (ecssTC.applicationId == CAN::NodeID) {
-            MessageParser::execute(ecssTC);
+        for (LCL lcl : LCLDefinitions::lclArray) {
+            lcl.disableLCL();
         }
-        else {
-            auto destination = static_cast<CAN::NodeIDs>(ecssTC.applicationId);
-            CAN::Application::createPacketMessage(destination, false, cobsDecodedMessage, Message::TC, false);
-        }
+
+        vTaskSuspend(NULL);
     }
 }

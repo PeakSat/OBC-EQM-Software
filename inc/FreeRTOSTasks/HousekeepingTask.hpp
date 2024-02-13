@@ -23,7 +23,7 @@ public:
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
+        taskHandle = xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
                           this, configMAX_PRIORITIES - 1, this->taskStack,
                           &(this->taskBuffer));
     }

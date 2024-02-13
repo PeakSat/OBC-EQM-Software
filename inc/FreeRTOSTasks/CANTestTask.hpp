@@ -19,7 +19,7 @@ public:
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask < CANTestTask > , this->TaskName, CANTestTask::TaskStackDepth, this,
+        taskHandle = xTaskCreateStatic(vClassTask < CANTestTask > , this->TaskName, CANTestTask::TaskStackDepth, this,
                           configMAX_PRIORITIES - 1, this->taskStack, &(this->taskBuffer));
     }
 };
