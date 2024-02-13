@@ -6,7 +6,7 @@
 
 class NANDTask : public Task {
 private:
-    const uint16_t DelayMs = 20000;
+    const uint16_t DelayMs = 500;
 
     const static inline uint16_t TaskStackDepth = 1000;
 
@@ -21,8 +21,8 @@ public:
 
     void createTask() {
         nandTaskHandle = xTaskCreateStatic(vClassTask<NANDTask>, this->TaskName,
-                          NANDTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2, this->taskStack,
-                          &(this->taskBuffer));
+                                           NANDTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2, this->taskStack,
+                                           &(this->taskBuffer));
     }
 
 };

@@ -7,7 +7,7 @@
 
 void NANDTask::execute() {
 
-    MT29F blabla(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
+    MT29F mt29f(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
 
     LCL &nandLCL = LCLDefinitions::lclArray[LCLDefinitions::NANDFlash];
 
@@ -18,7 +18,7 @@ void NANDTask::execute() {
     /* INITIALIZE & STATUS */
     for (failedTries = 0; failedTries < 3;) {
         uint8_t status = 1;
-        status = blabla.resetNAND();
+        status = mt29f.resetNAND();
         if (status != 0) {
             LOG_DEBUG << "The status of the 1st LUN (die) is: " << status;
             break;
@@ -31,13 +31,9 @@ void NANDTask::execute() {
     while (true) {
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
-            if (blabla.isNANDAlive()) {
-                uint8_t id[8];
-                etl::array<unsigned char, 8> etlArray;
-                for (size_t i = 0; i < 8; i++) {
-                    etlArray[i] = static_cast<unsigned char>(id[i]);
-                }
-                blabla.readNANDID(etlArray);
+            if (mt29f.isNANDAlive()) {
+                uint8_t id[8] = {};
+                mt29f.readNANDID(id);
                 etl::string<32> stringID = "";
                 for (uint8_t i = 0; i < 8; i++) {
                     etl::to_string(id[i], stringID, true);
@@ -47,28 +43,26 @@ void NANDTask::execute() {
                 break;
             } else {
                 LOG_DEBUG << "Wrong NAND ID";
-                blabla.resetNAND();
+                mt29f.resetNAND();
                 failedTries++;
             }
         }
+
 
         /* WRITE */
         uint8_t dataWrite[20] = {};
         for (uint8_t i = 0; i < 20; i++) {
             dataWrite[i] = i + 1;
         }
+
         uint32_t writePosition = rand() % (1105920 * 10);
         LOG_DEBUG << "Write address is: " << writePosition;
-        uint8_t LUN = 1;
-        uint8_t BLOCK = writePosition / 1105920;
-        uint32_t PAGE = BLOCK/8640;
-        uint32_t COLUMN = PAGE/8;
 
         for (failedTries = 0; failedTries < 3;) {
-            bool success = blabla.writeNAND(LUN, PAGE, COLUMN,dataWrite);
+            bool success = mt29f.writeNAND(0, writePosition, 20, dataWrite);
             if (!success) {
                 LOG_DEBUG << "Failed to write NAND";
-                if (blabla.errorHandler()) {
+                if (mt29f.errorHandler()) {
                     LOG_DEBUG << "NAND is alive";
                 } else {
                     LOG_DEBUG << "NAND is not responding";
@@ -81,11 +75,12 @@ void NANDTask::execute() {
             }
         }
 
+
         /* READ */
-        etl::array<uint8_t, 20> dataRead = {};
+        uint8_t dataRead[20] = {};
 
         for (failedTries = 0; failedTries < 3;) {
-            bool success = blabla.readNAND(LUN, PAGE, COLUMN,dataRead);
+            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
             if (success) {
                 etl::string<100> stringReadWrite = "";
                 for (uint8_t i = 0; i < 20; i++) {
@@ -104,7 +99,7 @@ void NANDTask::execute() {
                 break;
             } else {
                 LOG_ERROR << "Failed to read NAND";
-                if (blabla.errorHandler()) {
+                if (mt29f.errorHandler()) {
                     LOG_INFO << "NAND is alive";
                 } else {
                     LOG_INFO << "NAND is not responding";
@@ -114,8 +109,9 @@ void NANDTask::execute() {
             }
         }
         /* ERASE */
+        uint8_t block = writePosition / 1105920;
         for (failedTries = 0; failedTries < 3;) {
-            uint8_t success = blabla.eraseBlock(1, BLOCK);
+            uint8_t success = mt29f.eraseBlock(0, block);
             if (!success) {
                 LOG_ERROR << "Failed to erase NAND block";
                 failedTries++;
@@ -129,9 +125,10 @@ void NANDTask::execute() {
         for (uint8_t i = 0; i < 20; i++) {
             dataErase[i] = 255;
         }
+
         /* READ */
         for (failedTries = 0; failedTries < 3;) {
-            bool success = blabla.readNAND(LUN, PAGE, COLUMN, dataRead);
+            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
             if (success) {
                 etl::string<100> stringReadErase = "";
                 for (uint8_t i = 0; i < 20; i++) {
@@ -156,6 +153,6 @@ void NANDTask::execute() {
         vTaskResume(MRAMTask::mramTaskHandle);
         vTaskSuspend(NULL);
 
-        vTaskDelay(DelayMs);
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
