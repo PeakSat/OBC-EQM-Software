@@ -153,6 +153,6 @@ void NANDTask::execute() {
         vTaskResume(MRAMTask::mramTaskHandle);
         vTaskSuspend(NULL);
 
-        vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        vTaskDelay(DelayMs);
     }
 }
