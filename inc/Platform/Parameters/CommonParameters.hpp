@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Helpers/Parameter.hpp"
 #include "OBC_Definitions.hpp"
 #include "AcubeSATParameters.hpp"
 

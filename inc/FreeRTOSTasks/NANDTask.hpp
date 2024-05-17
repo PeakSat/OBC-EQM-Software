@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Task.hpp"
-#include "NANDFlash.hpp"
+#include "NANDFlash.h"
 
 
 class NANDTask : public Task {

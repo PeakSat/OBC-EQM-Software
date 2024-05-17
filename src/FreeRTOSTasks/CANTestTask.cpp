@@ -2,6 +2,8 @@
 #include "CANGatekeeperTask.hpp"
 
 void CANTestTask::execute() {
+
+        LOG_DEBUG << "Runtime init: " << this->TaskName;
     CAN::Frame frame = {CAN::NodeID};
     for (auto i = 0; i < CAN::Frame::MaxDataLength; i++) {
         frame.data.at(i) = i;
@@ -12,6 +14,8 @@ void CANTestTask::execute() {
     String<ECSSMaxMessageSize> testPayload2("Giati?");
 
     while (true) {
+
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         if(AcubeSATParameters::obcCANBUSActive.getValue() == CAN::Driver::ActiveBus::Redundant) {
             AcubeSATParameters::obcCANBUSActive.setValue(CAN::Driver::ActiveBus::Main);
             CAN::Application::createLogMessage(CAN::NodeIDs::COMMS, false, testPayload1.data(), false);
@@ -22,6 +26,8 @@ void CANTestTask::execute() {
 
 
 //        xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
+
+        LOG_DEBUG << "Runtime exit: " << this->TaskName;
         vTaskDelay(pdMS_TO_TICKS(5000));
     }
 }

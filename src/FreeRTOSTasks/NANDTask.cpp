@@ -6,7 +6,7 @@
 
 
 void NANDTask::execute() {
-
+    LOG_DEBUG << "Runtime init: " << this->TaskName;
     MT29F mt29f(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
 
     LCL &nandLCL = LCLDefinitions::lclArray[LCLDefinitions::NANDFlash];
@@ -29,6 +29,7 @@ void NANDTask::execute() {
         }
     }
     while (true) {
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
@@ -149,10 +150,10 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-
+        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
         vTaskResume(MRAMTask::mramTaskHandle);
         vTaskSuspend(NULL);
 
-        vTaskDelay(DelayMs);
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

@@ -22,6 +22,7 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
 }
 
 void CANGatekeeperTask::execute() {
+    LOG_DEBUG << "Runtime init: " << this->TaskName;
 #ifdef OBC_EQM_LCL
     LCLDefinitions::lclArray[LCLDefinitions::CAN1].enableLCL();
     LCLDefinitions::lclArray[LCLDefinitions::CAN2].enableLCL();
@@ -36,6 +37,7 @@ void CANGatekeeperTask::execute() {
     uint32_t ulNotifiedValue;
 
     while (true) {
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         xTaskNotifyWait(0, 0, &ulNotifiedValue, portMAX_DELAY);
 
         if (xTaskGetTickCount() - lastTransmissionTime > 8000) {
@@ -56,5 +58,6 @@ void CANGatekeeperTask::execute() {
             xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
             CAN::Driver::send(out_message);
         }
+        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
     }
 }
