@@ -7,7 +7,8 @@
 #include "AmbientTemperatureTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "WatchdogTask.hpp"
-#include "CANGatekeeperTask.hpp"
+#include "CANOutgoingGatekeeperTask.hpp"
+#include "CANIncomingGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 
 void initializeTasks();

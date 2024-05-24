@@ -22,23 +22,8 @@
  * canGatekeeperTask->addToQueue(message); // Add the message to the outgoing queue.
  * @endcode
  */
-class CANGatekeeperTask : public Task {
+class CANIncomingGatekeeperTask : public Task {
 private:
-    /**
-     * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
-     */
-    QueueHandle_t outgoingQueue;
-
-    /**
-     * The variable used to hold the queue's data structure.
-     */
-    static inline StaticQueue_t outgoingQueueBuffer;
-
-    /**
-     * Storage area given to freeRTOS to manage the queue items.
-     */
-    static inline uint8_t outgoingQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];
-
     /**
      * A freeRTOS queue to handle incoming frames part of a CAN-TP message, since they need to be parsed as a whole.
      */
@@ -73,53 +58,16 @@ private:
 
     const static inline uint16_t TaskStackDepth = 1300;
 
-    StackType_t taskStack[TaskStackDepth]{};
-
-    CAN::Driver::ActiveBus ActiveBus = CAN::Driver::ActiveBus::Main;
+    StackType_t taskStack[TaskStackDepth];
 
 public:
-    TickType_t lastTransmissionTime = 0;
-
     void execute();
 
     /**
      * The constructor calls the initialize() function of the CAN::Driver. It also initializes the FreeRTOS queues for
      * incoming/outgoing messages.
      */
-    CANGatekeeperTask();
-
-    /**
-     * Adds an CAN::Frame to the CAN Gatekeeper's queue.
-     *
-     * This function was added as an extra abstraction layer to house the `xQueueSendToBack` function.
-     * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
-     * know the low level details of the queue.
-     *
-     * If the queue is full, the message is not added to the queue and an error is logged.
-     *
-     * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
-     * @param isISR indicating if the message is a response to another CAN Message, thus composed through an ISR
-     */
-    inline void send(const CAN::Frame &message, bool isISR = false) {
-        BaseType_t status;
-
-        if (isISR) {
-            BaseType_t taskShouldYield = pdFALSE;
-
-            status = xQueueSendToBackFromISR(outgoingQueue, &message, &taskShouldYield);
-
-            if (taskShouldYield) {
-                taskYIELD();
-            }
-        } else {
-            status = xQueueSendToBack(outgoingQueue, &message, 0);
-        }
-
-        if (status == errQUEUE_FULL) {
-            LOG_ERROR << "Tried sending CAN Message while outgoing queue is full!";
-        }
-    }
-
+    CANIncomingGatekeeperTask();
     /**
      * Adds a CAN::Frame to the incomingQueue.
      * If the queue is full the message is lost.
@@ -189,11 +137,6 @@ public:
         return message;
     }
 
-    inline void switchActiveBus(CAN::Driver::ActiveBus activeBus){
-        this->ActiveBus = activeBus;
-    }
-
-
     /**
      * Deletes all items present in the incoming queue.
      */
@@ -215,9 +158,9 @@ public:
     }
 
     void createTask() {
-        taskHandle = xTaskCreateStatic(vClassTask < CANGatekeeperTask > , this->TaskName, CANGatekeeperTask::TaskStackDepth, this,
+        taskHandle = xTaskCreateStatic(vClassTask < CANIncomingGatekeeperTask > , this->TaskName, CANIncomingGatekeeperTask::TaskStackDepth, this,
                                        tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 };
 
-inline std::optional<CANGatekeeperTask> canGatekeeperTask;
+inline std::optional<CANIncomingGatekeeperTask> canIncomingGatekeeperTask;

@@ -9,7 +9,8 @@
 #include "HousekeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
-#include "CANGatekeeperTask.hpp"
+#include "CANOutgoingGatekeeperTask.hpp"
+#include "CANIncomingGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
 #include "NANDTask.hpp"
@@ -41,10 +42,11 @@ extern "C" void main_cpp() {
     mcuTemperatureTask.emplace();
     tcHandlingTask.emplace();
     housekeepingTask.emplace();
-    canGatekeeperTask.emplace();
+    canOutgoingGatekeeperTask.emplace();
+    canIncomingGatekeeperTask.emplace();
     canTestTask.emplace();
-    nandTask.emplace();
-    mramTask.emplace();
+    // nandTask.emplace();
+    // mramTask.emplace();
 
 
     ambientTemperatureTask->createTask();
@@ -54,10 +56,11 @@ extern "C" void main_cpp() {
     watchdogTask->createTask();
     tcHandlingTask->createTask();
     housekeepingTask->createTask();
-    canGatekeeperTask->createTask();
+    canOutgoingGatekeeperTask->createTask();
+    canIncomingGatekeeperTask->createTask();
     canTestTask->createTask();
-    nandTask->createTask();
-    mramTask->createTask();
+    // nandTask->createTask();
+    // mramTask->createTask();
 
     vTaskStartScheduler();
 

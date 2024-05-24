@@ -2,7 +2,7 @@
 #include "CAN/Driver.hpp"
 #include "CAN/TPMessage.hpp"
 #include "CAN/TPProtocol.hpp"
-#include "CANGatekeeperTask.hpp"
+#include "CANOutgoingGatekeeperTask.hpp"
 
 namespace CAN::Application {
     Driver::ActiveBus switchBus(Driver::ActiveBus newBus) {
@@ -27,7 +27,7 @@ namespace CAN::Application {
     }
 
     void sendHeartbeatMessage() {
-        canGatekeeperTask->send({MessageIDs::Heartbeat + CAN::NodeID}, false);
+        canOutgoingGatekeeperTask->send({MessageIDs::Heartbeat + CAN::NodeID}, false);
     }
 
     void sendBusSwitchoverMessage() {
@@ -38,13 +38,13 @@ namespace CAN::Application {
 
         etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {switchBus(newBus)};
 
-        canGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data}, false);
+        canOutgoingGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data}, false);
     }
 
     void sendBusSwitchoverMessage(Driver::ActiveBus newBus) {
         etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {switchBus(newBus)};
 
-        canGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data}, false);
+        canOutgoingGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data}, false);
     }
 
     void sendUTCTimeMessageWithElapsedTicks() {
@@ -62,7 +62,7 @@ namespace CAN::Application {
                                                                static_cast<uint8_t>(utc.day),
                                                                static_cast<uint8_t>(utc.day >> 8)};
 
-        canGatekeeperTask->send({MessageIDs::UTCTime + CAN::NodeID, data}, false);
+        canOutgoingGatekeeperTask->send({MessageIDs::UTCTime + CAN::NodeID, data}, false);
     }
 
     void createSendParametersMessage(NodeIDs destinationAddress, bool isMulticast,

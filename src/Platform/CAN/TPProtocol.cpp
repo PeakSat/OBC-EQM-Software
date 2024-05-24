@@ -1,5 +1,6 @@
 #include "CAN/TPProtocol.hpp"
-#include "CANGatekeeperTask.hpp"
+#include "CANOutgoingGatekeeperTask.hpp"
+#include "CANIncomingGatekeeperTask.hpp"
 
 using namespace CAN;
 
@@ -21,12 +22,12 @@ void TPProtocol::processSingleFrame(const CAN::Frame &message) {
 
 void TPProtocol::processMultipleFrames() {
     TPMessage message;
-    uint8_t incomingMessagesCount = canGatekeeperTask->getIncomingMFMessagesCount();
+    uint8_t incomingMessagesCount = canIncomingGatekeeperTask->getIncomingMFMessagesCount();
     uint16_t dataLength = 0;
     bool receivedFirstFrame = false;
 
     for (uint8_t messageCounter = 0; messageCounter < incomingMessagesCount; messageCounter++) {
-        CAN::Frame frame = canGatekeeperTask->getFromMFQueue();
+        CAN::Frame frame = canIncomingGatekeeperTask->getFromMFQueue();
         auto frameType = static_cast<Frame>(frame.data[0] >> 6);
 
         if (not receivedFirstFrame) {
@@ -39,7 +40,7 @@ void TPProtocol::processMultipleFrames() {
             uint8_t consecutiveFrameCount = frame.data[0] & 0b111111;
             if (not ErrorHandler::assertInternal(messageCounter == consecutiveFrameCount,
                                                  ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
-                canGatekeeperTask->emptyIncomingMFQueue();
+                canIncomingGatekeeperTask->emptyIncomingMFQueue();
                 return;
             }
 
@@ -119,7 +120,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message, bool isISR) {
         for (size_t idx = 0; idx < messageSize; idx++) {
             data.at(idx + 1) = message.data[idx];
         }
-        canGatekeeperTask->send({id, data}, isISR);
+        canOutgoingGatekeeperTask->send({id, data}, isISR);
 
         return;
     }
@@ -133,7 +134,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message, bool isISR) {
 
         etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {firstByte, secondByte};
 
-        canGatekeeperTask->send({id, firstFrame}, isISR);
+        canOutgoingGatekeeperTask->send({id, firstFrame}, isISR);
     }
 
     // Consecutive Frames
@@ -151,6 +152,6 @@ void TPProtocol::createCANTPMessage(const TPMessage &message, bool isISR) {
             consecutiveFrame.at(idx + 1) = message.data[idx + UsableDataLength * (currentConsecutiveFrameCount - 1)];
         }
 
-        canGatekeeperTask->send({id, consecutiveFrame}, isISR);
+        canOutgoingGatekeeperTask->send({id, consecutiveFrame}, isISR);
     }
 }
