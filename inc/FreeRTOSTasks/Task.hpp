@@ -16,7 +16,7 @@
 class Task {
 public:
     /**
-     * taskBuffer parameter of each FreeRTOS task that holds the new task's data structures 
+     * taskBuffer parameter of each FreeRTOS task that holds the new task's data structures
      */
     StaticTask_t taskBuffer;
 

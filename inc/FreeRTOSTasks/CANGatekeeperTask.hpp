@@ -24,6 +24,13 @@
  */
 class CANGatekeeperTask : public Task {
 private:
+
+    enum Notifications {
+        SingleFrameIncoming = 0x00,
+        MultipleFramesIncoming = 0x01,
+        SendMessage = 0x02,
+    };
+
     /**
      * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
      */
@@ -108,11 +115,19 @@ public:
 
             status = xQueueSendToBackFromISR(outgoingQueue, &message, &taskShouldYield);
 
+            if (status == pdPASS) {
+                xTaskNotifyFromISR(taskHandle, Notifications::SendMessage, eSetBits, &taskShouldYield);
+            }
+
             if (taskShouldYield) {
                 taskYIELD();
             }
         } else {
             status = xQueueSendToBack(outgoingQueue, &message, 0);
+
+            if (status == pdPASS) {
+                xTaskNotify(taskHandle, Notifications::SendMessage, eSetBits);
+            }
         }
 
         if (status == errQUEUE_FULL) {
@@ -185,8 +200,11 @@ public:
      */
     inline CAN::Frame getFromSFQueue() {
         CAN::Frame message;
-        xQueueReceive(incomingSFQueue, &message, 0);
-        return message;
+        if (xQueueReceive(incomingSFQueue, &message, 0) == pdPASS) {
+            return message;
+        } else {
+            return {};
+        }
     }
 
     inline void switchActiveBus(CAN::Driver::ActiveBus activeBus){
@@ -203,8 +221,11 @@ public:
 
     inline CAN::Frame getFromMFQueue() {
         CAN::Frame message;
-        xQueueReceive(incomingMFQueue, &message, 0);
-        return message;
+        if (xQueueReceive(incomingMFQueue, &message, 0) == pdPASS) {
+            return message;
+        } else {
+            return {};
+        }
     }
 
     /**
@@ -221,3 +242,6 @@ public:
 };
 
 inline std::optional<CANGatekeeperTask> canGatekeeperTask;
+
+
+

@@ -43,8 +43,8 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
-    nandTask.emplace();
-    mramTask.emplace();
+    // nandTask.emplace();
+    // mramTask.emplace();
 
 
     ambientTemperatureTask->createTask();
@@ -56,8 +56,8 @@ extern "C" void main_cpp() {
     housekeepingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
-    nandTask->createTask();
-    mramTask->createTask();
+    // nandTask->createTask();
+    // mramTask->createTask();
 
     vTaskStartScheduler();
 

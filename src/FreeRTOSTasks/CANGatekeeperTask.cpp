@@ -46,15 +46,18 @@ void CANGatekeeperTask::execute() {
             MCAN1_Initialize();
         }
 
-        if (getIncomingSFMessagesCount()) {
-            xQueueReceive(incomingSFQueue, &in_message, portMAX_DELAY);
-            CAN::TPProtocol::processSingleFrame(in_message);
+        if (ulNotifiedValue & Notifications::SingleFrameIncoming) {
+                CAN::TPProtocol::processSingleFrame(getFromSFQueue());
         }
-        CAN::TPProtocol::processMultipleFrames();
 
-        if (uxQueueMessagesWaiting(outgoingQueue)) {
-            xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
-            CAN::Driver::send(out_message);
+        if ((ulNotifiedValue & Notifications::MultipleFramesIncoming)) {
+            CAN::TPProtocol::processMultipleFrames();
+        }
+        else {
+            if (uxQueueMessagesWaiting(outgoingQueue)) {
+                xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
+                CAN::Driver::send(out_message);
+            }
         }
     }
 }
