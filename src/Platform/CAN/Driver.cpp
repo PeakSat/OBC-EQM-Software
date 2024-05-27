@@ -1,7 +1,7 @@
 #include "CAN/Driver.hpp"
 #include "CAN/TPProtocol.hpp"
-#include "CANOutgoingGatekeeperTask.hpp"
-#include "CANIncomingGatekeeperTask.hpp"
+#include "CANGatekeeperTask.hpp"
+#include "CANIncomingHandlerTask.hpp"
 #include "Logger.hpp"
 
 uint8_t CAN::Driver::convertDlcToLength(uint8_t dlc) {
@@ -42,7 +42,7 @@ void CAN::Driver::mcan0TxFifoCallback(uintptr_t context) {
         return;
     }
 
-    canOutgoingGatekeeperTask->lastTransmissionTime = xTaskGetTickCount();
+    canGatekeeperTask->lastTransmissionTime = xTaskGetTickCount();
 }
 
 void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
@@ -59,13 +59,14 @@ void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
         memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
             if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
-                canIncomingGatekeeperTask->addSFToIncoming(getFrame(rxFifo0));
-                xTaskNotifyFromISR(canIncomingGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+                canIncomingHandlerTask->addSFToIncoming(getFrame(rxFifo0));
+                xTaskNotifyFromISR(canIncomingHandlerTask->taskHandle, canIncomingHandlerTask->singleFrameEvent, eNoAction, &xHigherPriorityTaskWoken);
+                portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 
             } else {
-                canIncomingGatekeeperTask->addMFToIncoming(getFrame(rxFifo0));
+                canIncomingHandlerTask->addMFToIncoming(getFrame(rxFifo0));
                 if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
-                    xTaskNotifyFromISR(canIncomingGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+                    xTaskNotifyFromISR(canIncomingHandlerTask->taskHandle, canIncomingHandlerTask->multipleFramesEvent, eNoAction, &xHigherPriorityTaskWoken);
                     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
                 }
             }
@@ -101,7 +102,7 @@ void CAN::Driver::mcan1TxFifoCallback(uintptr_t context) {
         return;
     }
 
-    canOutgoingGatekeeperTask->lastTransmissionTime = xTaskGetTickCount();
+    canGatekeeperTask->lastTransmissionTime = xTaskGetTickCount();
 }
 
 void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
@@ -119,13 +120,13 @@ void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
 
             if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Single) {
-                canIncomingGatekeeperTask->addSFToIncoming(getFrame(rxFifo0));
-                xTaskNotifyFromISR(canIncomingGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+                canIncomingHandlerTask->addSFToIncoming(getFrame(rxFifo0));
+                xTaskNotifyFromISR(canIncomingHandlerTask->taskHandle, canIncomingHandlerTask->singleFrameEvent, eNoAction, &xHigherPriorityTaskWoken);
 
             } else {
-                canIncomingGatekeeperTask->addMFToIncoming(getFrame(rxFifo0));
+                canIncomingHandlerTask->addMFToIncoming(getFrame(rxFifo0));
                 if (rxFifo0.data[0] >> 6 == CAN::TPProtocol::Frame::Final) {
-                    xTaskNotifyFromISR(canIncomingGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+                    xTaskNotifyFromISR(canIncomingHandlerTask->taskHandle, canIncomingHandlerTask->multipleFramesEvent, eNoAction, &xHigherPriorityTaskWoken);
                     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
                 }
             }

@@ -15,14 +15,15 @@
  * deadlocks that might be caused by simultaneous requests of access to the same resource. It works by having anyone
  * needing to access CAN, send the data in a queue. Then this task receives queue elements and sends them via CAN.
  *
- * @example @code
+ * @example
+ * @code
  * uint32_t id = 0x4; // Specify the sending Node ID.
  * etl::vector<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; // Specify an array of data, up to 64 bytes.
  * CAN::Frame message = {id, data}; // Create a CAN::Frame object.
  * canGatekeeperTask->addToQueue(message); // Add the message to the outgoing queue.
  * @endcode
  */
-class CANIncomingGatekeeperTask : public Task {
+class CANIncomingHandlerTask : public Task {
 private:
     /**
      * A freeRTOS queue to handle incoming frames part of a CAN-TP message, since they need to be parsed as a whole.
@@ -61,13 +62,23 @@ private:
     StackType_t taskStack[TaskStackDepth];
 
 public:
+    /**
+    * Event ID for when a single frame is received
+    */
+    static inline uint8_t singleFrameEvent = 0x00;
+
+    /**
+    * Event ID for when multiple frames are received
+    */
+    static inline uint8_t multipleFramesEvent = 0x01;
+
     void execute();
 
     /**
      * The constructor calls the initialize() function of the CAN::Driver. It also initializes the FreeRTOS queues for
      * incoming/outgoing messages.
      */
-    CANIncomingGatekeeperTask();
+    CANIncomingHandlerTask();
     /**
      * Adds a CAN::Frame to the incomingQueue.
      * If the queue is full the message is lost.
@@ -96,7 +107,7 @@ public:
      *
      * @param message The incoming CAN::Frame.
      */
-    inline void addMFToIncoming(const CAN::Frame &message) {
+    void addMFToIncoming(const CAN::Frame &message) {
         BaseType_t taskShouldYield = pdFALSE;
 
         xQueueSendToBackFromISR(incomingMFQueue, &message, &taskShouldYield);
@@ -158,9 +169,9 @@ public:
     }
 
     void createTask() {
-        taskHandle = xTaskCreateStatic(vClassTask < CANIncomingGatekeeperTask > , this->TaskName, CANIncomingGatekeeperTask::TaskStackDepth, this,
+        taskHandle = xTaskCreateStatic(vClassTask < CANIncomingHandlerTask > , this->TaskName, CANIncomingHandlerTask::TaskStackDepth, this,
                                        tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 };
 
-inline std::optional<CANIncomingGatekeeperTask> canIncomingGatekeeperTask;
+inline std::optional<CANIncomingHandlerTask> canIncomingHandlerTask;

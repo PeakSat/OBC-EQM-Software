@@ -1,8 +1,8 @@
 #include "CAN/Driver.hpp"
 #include "CAN/Frame.hpp"
-#include "CANOutgoingGatekeeperTask.hpp"
+#include "CANGatekeeperTask.hpp"
 
-CANOutgoingGatekeeperTask::CANOutgoingGatekeeperTask() : Task("CANGatekeeperTask") {
+CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     CAN::Driver::initialize();
 
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
@@ -11,7 +11,7 @@ CANOutgoingGatekeeperTask::CANOutgoingGatekeeperTask() : Task("CANGatekeeperTask
     configASSERT(outgoingQueue);
 }
 
-void CANOutgoingGatekeeperTask::execute() {
+void CANGatekeeperTask::execute() {
 #ifdef OBC_EQM_LCL
     LCLDefinitions::lclArray[LCLDefinitions::CAN1].enableLCL();
     LCLDefinitions::lclArray[LCLDefinitions::CAN2].enableLCL();

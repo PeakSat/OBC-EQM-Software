@@ -1,8 +1,8 @@
 #include "CAN/Driver.hpp"
 #include "CAN/Frame.hpp"
-#include "CANIncomingGatekeeperTask.hpp"
+#include "CANIncomingHandlerTask.hpp"
 
-CANIncomingGatekeeperTask::CANIncomingGatekeeperTask() : Task("CANGatekeeperTask") {
+CANIncomingHandlerTask::CANIncomingHandlerTask() : Task("CANGatekeeperTask") {
 
     incomingSFQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), incomingSFQueueStorageArea,
                                          &incomingSFQueueBuffer);
@@ -15,15 +15,7 @@ CANIncomingGatekeeperTask::CANIncomingGatekeeperTask() : Task("CANGatekeeperTask
     configASSERT(incomingMFQueue);
 }
 
-void CANIncomingGatekeeperTask::execute() {
-#ifdef OBC_EQM_LCL
-    LCLDefinitions::lclArray[LCLDefinitions::CAN1].enableLCL();
-    LCLDefinitions::lclArray[LCLDefinitions::CAN2].enableLCL();
-#endif
-
-    PIO_PinWrite(CAN::CAN_SILENT_1, false);
-    PIO_PinWrite(CAN::CAN_SILENT_2, false);
-
+void CANIncomingHandlerTask::execute() {
     CAN::Frame out_message = {};
     CAN::Frame in_message = {};
 
@@ -31,13 +23,12 @@ void CANIncomingGatekeeperTask::execute() {
 
     while (true) {
         xTaskNotifyWait(0, 0, &ulNotifiedValue, portMAX_DELAY);
-
-        if (getIncomingSFMessagesCount()) {
+        if (ulNotifiedValue & singleFrameEvent) {
             xQueueReceive(incomingSFQueue, &in_message, portMAX_DELAY);
             CAN::TPProtocol::processSingleFrame(in_message);
         }
 
-        if (getIncomingMFMessagesCount()) {
+        if (ulNotifiedValue & multipleFramesEvent) {
             CAN::TPProtocol::processMultipleFrames();
         }
     }

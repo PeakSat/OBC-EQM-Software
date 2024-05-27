@@ -22,7 +22,7 @@
  * canGatekeeperTask->addToQueue(message); // Add the message to the outgoing queue.
  * @endcode
  */
-class CANOutgoingGatekeeperTask : public Task {
+class CANGatekeeperTask : public Task {
 private:
     /**
      * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
@@ -54,7 +54,7 @@ public:
      * The constructor calls the initialize() function of the CAN::Driver. It also initializes the FreeRTOS queues for
      * incoming/outgoing messages.
      */
-    CANOutgoingGatekeeperTask();
+    CANGatekeeperTask();
 
     /**
      * Adds an CAN::Frame to the CAN Gatekeeper's queue.
@@ -89,10 +89,10 @@ public:
     }
 
     void createTask() {
-        taskHandle = xTaskCreateStatic(vClassTask<CANOutgoingGatekeeperTask>, this->TaskName,
-            CANOutgoingGatekeeperTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
+        taskHandle = xTaskCreateStatic(vClassTask<CANGatekeeperTask>, this->TaskName,
+            CANGatekeeperTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
             this->taskStack, &(this->taskBuffer));
     }
 };
 
-inline std::optional<CANOutgoingGatekeeperTask> canOutgoingGatekeeperTask;
+inline std::optional<CANGatekeeperTask> canGatekeeperTask;

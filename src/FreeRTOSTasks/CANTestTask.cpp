@@ -1,5 +1,5 @@
 #include "CANTestTask.hpp"
-#include "CANOutgoingGatekeeperTask.hpp"
+#include "CANGatekeeperTask.hpp"
 
 void CANTestTask::execute() {
     CAN::Frame frame = {CAN::NodeID};
