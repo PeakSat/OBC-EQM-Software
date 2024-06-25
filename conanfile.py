@@ -36,8 +36,8 @@ class EQMSoftwareRecipe(ConanFile):
         git = Git(self)
         git.clone(url="git@github.com:cmcqueen/cobs-c.git", target=join(str(self.source_folder), "lib/cobs-c"))
         git = Git(self)
-        git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
-        self.run("cd lib/atsam-component-drivers && git checkout NAND-partial-implementation")
+        git.clone(url="git@github.com:PeakSat/obc-drivers.git", target=join(str(self.source_folder), "lib/obc-drivers"))
+        self.run("cd lib/obc && git checkout NAND-partial-implementation")
 
     def layout(self):
         cmake_layout(self)
