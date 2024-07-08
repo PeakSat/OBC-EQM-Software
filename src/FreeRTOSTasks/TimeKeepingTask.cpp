@@ -1,15 +1,19 @@
 #include "TimeKeepingTask.hpp"
 
 void TimeKeepingTask::execute() {
+    LOG_DEBUG << "Runtime init: " << this->TaskName;
     static tm dateTime;
     setEpoch(dateTime);
     RTC_TimeSet(&dateTime);
 
     while (true) {
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         RTC_TimeGet(&dateTime);
         setTimePlatformParameters(dateTime);
         printOnBoardTime();
+        LOG_DEBUG << "Runtime exit: " << this->TaskName;
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        
     }
 }
 
