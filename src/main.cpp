@@ -40,7 +40,7 @@ extern "C" void main_cpp() {
     watchdogTask.emplace();
     mcuTemperatureTask.emplace();
     tcHandlingTask.emplace();
-    housekeepingTask.emplace();
+//    housekeepingTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
 //    nandTask.emplace();
@@ -53,7 +53,7 @@ extern "C" void main_cpp() {
     uartGatekeeperTask->createTask();
     watchdogTask->createTask();
     tcHandlingTask->createTask();
-    housekeepingTask->createTask();
+//    housekeepingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
 //    nandTask->createTask();

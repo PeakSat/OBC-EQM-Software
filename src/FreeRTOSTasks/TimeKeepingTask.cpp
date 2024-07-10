@@ -7,11 +7,11 @@ void TimeKeepingTask::execute() {
     RTC_TimeSet(&dateTime);
 
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         RTC_TimeGet(&dateTime);
         setTimePlatformParameters(dateTime);
         printOnBoardTime();
-        LOG_DEBUG << "Runtime exit: " << this->TaskName;
+//        LOG_DEBUG << "Runtime exit: " << this->TaskName;
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
         
     }
