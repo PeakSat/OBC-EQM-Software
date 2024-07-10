@@ -120,7 +120,6 @@ extern void AFEC1_Handler              ( void ) __attribute__((weak, alias("Dumm
 extern void TWIHS2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void SPI1_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void QSPI_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void UART2_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UART3_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UART4_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void TC2_CH0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -213,7 +212,7 @@ const H3DeviceVectors exception_table=
     .pfnTWIHS2_Handler             = TWIHS2_Handler,
     .pfnSPI1_Handler               = SPI1_Handler,
     .pfnQSPI_Handler               = QSPI_Handler,
-    .pfnUART2_Handler              = UART2_Handler,
+    .pfnUART2_Handler              = UART2_InterruptHandler,
     .pfnUART3_Handler              = UART3_Handler,
     .pfnUART4_Handler              = UART4_Handler,
     .pfnTC2_CH0_Handler            = TC2_CH0_Handler,

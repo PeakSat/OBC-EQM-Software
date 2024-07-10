@@ -1,0 +1,6 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: uart2}
+children:
+- type: ElementPosition
+  attributes: {x: '577', y: '135', id: uart2}
