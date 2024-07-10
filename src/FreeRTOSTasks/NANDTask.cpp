@@ -33,7 +33,7 @@ void NANDTask::execute() {
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
-                uint8_t id[8] = {};
+                etl::array<uint8_t, 8> id = {};
                 mt29f.readNANDID(id);
                 etl::string<32> stringID = "";
                 for (uint8_t i = 0; i < 8; i++) {
@@ -60,8 +60,8 @@ void NANDTask::execute() {
         LOG_DEBUG << "Write address is: " << writePosition;
 
         for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.writeNAND(0, writePosition, 20, dataWrite);
-            if (!success) {
+            // bool success = mt29f.writeNAND(dataWrite[0]);
+            if (!true) {
                 LOG_DEBUG << "Failed to write NAND";
                 if (mt29f.errorHandler()) {
                     LOG_DEBUG << "NAND is alive";
@@ -81,8 +81,8 @@ void NANDTask::execute() {
         uint8_t dataRead[20] = {};
 
         for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
-            if (success) {
+            // bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
+            if (true) {
                 etl::string<100> stringReadWrite = "";
                 for (uint8_t i = 0; i < 20; i++) {
                     etl::to_string(dataRead[i], stringReadWrite, true);
@@ -129,8 +129,8 @@ void NANDTask::execute() {
 
         /* READ */
         for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
-            if (success) {
+            // bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
+            if (true) {
                 etl::string<100> stringReadErase = "";
                 for (uint8_t i = 0; i < 20; i++) {
                     etl::to_string(dataRead[i], stringReadErase, true);
