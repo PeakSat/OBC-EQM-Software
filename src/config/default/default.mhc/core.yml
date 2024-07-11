@@ -2099,6 +2099,13 @@ children:
       - type: User
         attributes: {value: GPIO}
   - type: String
+    attributes: {id: PIN_34_LAT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: High}
+  - type: String
     attributes: {id: PIN_34_PERIPHERAL_FUNCTION}
     children:
     - type: Values
@@ -3177,6 +3184,34 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_78_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Out}
+  - type: String
+    attributes: {id: PIN_78_FUNCTION_NAME}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PAYLOAD_TX_ENABLE}
+  - type: String
+    attributes: {id: PIN_78_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_78_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
     attributes: {id: PIN_79_FUNCTION_NAME}
     children:
     - type: Values
@@ -3700,7 +3735,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1095106560'}
+        attributes: {id: core, value: '1095172096'}
   - type: Hex
     attributes: {id: PIOD_PDR_VALUE}
     children:
@@ -3714,7 +3749,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '21102592'}
+        attributes: {id: core, value: '1094844416'}
   - type: Hex
     attributes: {id: PIOE_ABCDSR1_VALUE}
     children:

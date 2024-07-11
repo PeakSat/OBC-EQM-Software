@@ -140,10 +140,10 @@ void PIO_Initialize ( void )
     /* PORTD Output Write Enable */
     ((pio_registers_t*)PIO_PORT_D)->PIO_OWER = PIO_OWER_Msk;
     /* PORTD Output Direction Enable */
-    ((pio_registers_t*)PIO_PORT_D)->PIO_OER = 0x41460000U;
-    ((pio_registers_t*)PIO_PORT_D)->PIO_ODR = ~0x41460000U;
+    ((pio_registers_t*)PIO_PORT_D)->PIO_OER = 0x41470000U;
+    ((pio_registers_t*)PIO_PORT_D)->PIO_ODR = ~0x41470000U;
     /* Initialize PORTD pin state */
-    ((pio_registers_t*)PIO_PORT_D)->PIO_ODSR = 0x1420000U;
+    ((pio_registers_t*)PIO_PORT_D)->PIO_ODSR = 0x41420000U;
     /* PORTD drive control */
     ((pio_registers_t*)PIO_PORT_D)->PIO_DRIVER = 0x0U;
 

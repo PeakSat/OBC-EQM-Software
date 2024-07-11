@@ -25,7 +25,7 @@
 28,PE5,,Available,In,,,,,,,
 31,PB3,CAN_RX_1,MCAN0_CANRX0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 32,PA21,,Available,In,,,,,,,
-34,PD30,PAYLOAD_RX_ENABLE,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
+34,PD30,PAYLOAD_RX_ENABLE,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 35,PA7,MCU_RTC_IN,PMC_XIN32,n/a,n/a,No,Disabled,No,No,Disabled,Low
 36,PA8,MCU_RTC_OUT,PMC_XOUT32,n/a,n/a,No,Disabled,No,No,Disabled,Low
 37,PA22,ADM_ENABLE_1,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
@@ -64,7 +64,7 @@
 75,PA9,OBC_UART_RX,UART0_URXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 76,PC28,MEM_A10,EBI_A10,n/a,n/a,No,Disabled,No,No,Disabled,Low
 77,PA4,I2C_SCK_PANELS,TWIHS0_TWCK0,n/a,n/a,No,Disabled,No,No,Disabled,Low
-78,PD16,,Available,In,,,,,,,
+78,PD16,PAYLOAD_TX_ENABLE,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
 79,PB6,MCU_SWDIO,ICE_TMS/SWDIO,n/a,n/a,No,Disabled,No,No,Disabled,Low
 82,PC8,MEM_MRAM_WR_ENABLE,EBI_NWR0/NWE,n/a,n/a,No,Disabled,No,No,Disabled,Low
 84,PD14,,Available,In,,,,,,,

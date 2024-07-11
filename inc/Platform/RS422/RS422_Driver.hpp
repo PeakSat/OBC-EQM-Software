@@ -10,6 +10,8 @@
 #include <definitions.h>
 #include "peripheral/uart/plib_uart2.h"
 
+void enterLowPowerModeRS422();
+
 bool sendPayloadMessage(uint8_t* msg, size_t msg_size);
 
 bool sendPayloadStatus();

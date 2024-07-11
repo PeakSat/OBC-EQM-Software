@@ -381,6 +381,15 @@
 #define I2C_SCK_PANELS_Get()               ((PIOA_REGS->PIO_PDSR >> 4U) & 0x1U)
 #define I2C_SCK_PANELS_PIN                  PIO_PIN_PA4
 
+/*** Macros for PAYLOAD_TX_ENABLE pin ***/
+#define PAYLOAD_TX_ENABLE_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Get()               ((PIOD_REGS->PIO_PDSR >> 16U) & 0x1U)
+#define PAYLOAD_TX_ENABLE_PIN                  PIO_PIN_PD16
+
 /*** Macros for MCU_SWDIO pin ***/
 #define MCU_SWDIO_Get()               ((PIOB_REGS->PIO_PDSR >> 6U) & 0x1U)
 #define MCU_SWDIO_PIN                  PIO_PIN_PB6
