@@ -35,7 +35,7 @@ void MRAMTask::execute() {
     uint8_t randomValueOffset = 0, readData = 0;
 
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         if (isMRAMAlive()) {
             for (uint8_t address = 0; address < 150; address++) {
                 mram.mramWriteByte(randomAddressOffset + address, randomValueOffset + address);
@@ -67,7 +67,7 @@ void MRAMTask::execute() {
             randomValueOffset = 0;
         }
 
-        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
         vTaskResume(NANDTask::nandTaskHandle);
         vTaskSuspend(NULL);
 

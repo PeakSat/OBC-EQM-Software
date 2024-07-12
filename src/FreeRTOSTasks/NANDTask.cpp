@@ -29,7 +29,7 @@ void NANDTask::execute() {
         }
     }
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
@@ -150,7 +150,7 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
         vTaskResume(MRAMTask::mramTaskHandle);
         vTaskSuspend(NULL);
 
