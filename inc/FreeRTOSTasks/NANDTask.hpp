@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Task.hpp"
-#include "NANDFlash.hpp"
+#include "NANDFlash.h"
 
 
 class NANDTask : public Task {
 private:
-    const uint16_t DelayMs = 5000;
+    const uint16_t DelayMs = 12000;
 
     const static inline uint16_t TaskStackDepth = 5000;
 
