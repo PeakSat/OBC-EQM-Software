@@ -61,6 +61,7 @@
 #include "system/time/sys_time.h"
 #include "peripheral/afec/plib_afec0.h"
 #include "peripheral/smc/plib_smc.h"
+#include "peripheral/uart/plib_uart2.h"
 #include "peripheral/uart/plib_uart0.h"
 #include "peripheral/mcan/plib_mcan0.h"
 #include "peripheral/mcan/plib_mcan1.h"

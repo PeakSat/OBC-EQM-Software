@@ -162,6 +162,8 @@ void SYS_Initialize ( void* data )
 
     SMC_Initialize();
 
+	UART2_Initialize();
+
 	UART0_Initialize();
 
     MCAN0_Initialize();

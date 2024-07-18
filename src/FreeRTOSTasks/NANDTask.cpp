@@ -4,7 +4,6 @@
 #include "LCLDefinitions.hpp"
 #include "MRAMTask.hpp"
 
-
 void NANDTask::execute() {
     LOG_DEBUG << "Runtime init: " << this->TaskName;
     MT29F mt29f(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
@@ -29,11 +28,11 @@ void NANDTask::execute() {
         }
     }
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+        //LOG_DEBUG << "Runtime entered: " << this->TaskName;
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
-                uint8_t id[8] = {};
+                etl::array<uint8_t, 8> id = {};
                 mt29f.readNANDID(id);
                 etl::string<32> stringID = "";
                 for (uint8_t i = 0; i < 8; i++) {
@@ -51,7 +50,7 @@ void NANDTask::execute() {
 
 
         /* WRITE */
-        uint8_t dataWrite[20] = {};
+        etl::array<uint8_t, 20> dataWrite = {};
         for (uint8_t i = 0; i < 20; i++) {
             dataWrite[i] = i + 1;
         }
@@ -78,7 +77,7 @@ void NANDTask::execute() {
 
 
         /* READ */
-        uint8_t dataRead[20] = {};
+        etl::array<uint8_t, 20> dataRead = {};
 
         for (failedTries = 0; failedTries < 3;) {
             bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
@@ -90,7 +89,7 @@ void NANDTask::execute() {
                 }
 
                 // check if write-read was correct
-                if (std::equal(std::begin(dataRead), std::end(dataRead), dataWrite)) {
+                if (std::equal(std::begin(dataRead), std::end(dataRead), std::begin(dataWrite))) {
                     LOG_INFO << "NAND read and write test succeeded";
                 } else {
                     LOG_INFO << "NAND read and write test failed";
@@ -109,7 +108,7 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-        /* ERASE */
+//        /* ERASE */
         uint8_t block = writePosition / 1105920;
         for (failedTries = 0; failedTries < 3;) {
             uint8_t success = mt29f.eraseBlock(0, block);
@@ -136,7 +135,7 @@ void NANDTask::execute() {
                     etl::to_string(dataRead[i], stringReadErase, true);
                     stringReadErase.append(" ");
                 }
-                if (std::equal(std::begin(dataRead), std::end(dataRead), dataWrite)) {
+                if (std::equal(std::begin(dataRead), std::end(dataRead), std::begin(dataWrite))) {
                     LOG_INFO << "NAND erase test failed";
                 } else if (!std::equal(std::begin(dataRead), std::end(dataRead), dataErase)) {
                     LOG_INFO << "NAND erase test failed";
@@ -150,9 +149,9 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
-        vTaskResume(MRAMTask::mramTaskHandle);
-        vTaskSuspend(NULL);
+//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+//        vTaskResume(MRAMTask::mramTaskHandle);
+//        vTaskSuspend(NULL);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }

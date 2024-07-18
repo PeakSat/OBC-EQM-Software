@@ -14,6 +14,7 @@
 #include "TCHandlingTask.hpp"
 #include "NANDTask.hpp"
 #include "MRAMTask.hpp"
+#include "PayloadTestTask.hpp"
 
 #define IDLE_TASK_SIZE 200
 
@@ -43,6 +44,7 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     canGatekeeperTask.emplace();
     canTestTask.emplace();
+    payloadTestTask.emplace();
     nandTask.emplace();
     mramTask.emplace();
 
@@ -56,6 +58,7 @@ extern "C" void main_cpp() {
     housekeepingTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
+    payloadTestTask->createTask();
     nandTask->createTask();
     mramTask->createTask();
 

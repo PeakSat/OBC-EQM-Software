@@ -14,24 +14,26 @@
 # You can invoke make with the values of the macros:
 # $ makeMP_CC="/opt/microchip/mplabc30/v3.30c/bin/pic30-gcc" ...  
 #
-PATH_TO_IDE_BIN=/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/
+SHELL=cmd.exe
+PATH_TO_IDE_BIN=C:/Program Files/Microchip/MPLABX/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/
 # Adding MPLAB X bin directory to path.
-PATH:=/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
+PATH:=C:/Program Files/Microchip/MPLABX/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
 # Path to java used to run MPLAB X when this makefile was created
-MP_JAVA_PATH="/opt/microchip/mplabx/v6.00/sys/java/zulu8.54.0.21-ca-fx-jre8.0.292-linux_x64/bin/"
+MP_JAVA_PATH="C:\Program Files\Microchip\MPLABX\v6.00\sys\java\zulu8.54.0.21-ca-fx-jre8.0.292-win_x64/bin/"
 OS_CURRENT="$(shell uname -s)"
-MP_CC="/usr/bin/arm-none-eabi-gcc"
-MP_CPPC="/usr/bin/arm-none-eabi-g++"
+MP_CC="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe"
+MP_CPPC="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-g++.exe"
 # MP_BC is not defined
-MP_AS="/usr/bin/arm-none-eabi-as"
-MP_LD="/usr/bin/arm-none-eabi-ld"
-MP_AR="/usr/bin/arm-none-eabi-ar"
-DEP_GEN=${MP_JAVA_PATH}java -jar "/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
-MP_CC_DIR="/usr/bin"
-MP_CPPC_DIR="/usr/bin"
+MP_AS="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-as.exe"
+MP_LD="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-ld.exe"
+MP_AR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-ar.exe"
+DEP_GEN=${MP_JAVA_PATH}java -jar "C:/Program Files/Microchip/MPLABX/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
+MP_CC_DIR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin"
+MP_CPPC_DIR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin"
 # MP_BC_DIR is not defined
-MP_AS_DIR="/usr/bin"
-MP_LD_DIR="/usr/bin"
-MP_AR_DIR="/usr/bin"
+MP_AS_DIR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin"
+MP_LD_DIR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin"
+MP_AR_DIR="C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin"
 # MP_BC_DIR is not defined
-CMSIS_DIR=/opt/microchip/mplabx/v6.00/packs/arm/CMSIS/5.4.0
+DFP_DIR=C:/Users/tats/.mchp_packs/Microchip/SAMV71_DFP/4.9.117
+CMSIS_DIR=C:/Program Files/Microchip/MPLABX/v6.00/packs/arm/CMSIS/5.4.0

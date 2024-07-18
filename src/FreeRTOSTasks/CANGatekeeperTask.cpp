@@ -37,7 +37,7 @@ void CANGatekeeperTask::execute() {
     uint32_t ulNotifiedValue;
 
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         xTaskNotifyWait(0, 0, &ulNotifiedValue, portMAX_DELAY);
 
         if (xTaskGetTickCount() - lastTransmissionTime > 8000) {
@@ -58,6 +58,6 @@ void CANGatekeeperTask::execute() {
             xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
             CAN::Driver::send(out_message);
         }
-        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
     }
 }

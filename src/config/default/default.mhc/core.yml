@@ -720,6 +720,27 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'false'}
   - type: Boolean
+    attributes: {id: NVIC_44_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_44_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: UART2_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_44_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
     attributes: {id: NVIC_4_0_ENABLE}
     children:
     - type: Values
@@ -984,28 +1005,28 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_110_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ADM_DEPLOY_4}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_110_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_110_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_111_FUNCTION_NAME}
     children:
@@ -1957,28 +1978,28 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_28_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ADM_DEPLOY_3}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_28_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_28_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_2_FUNCTION_NAME}
     children:
@@ -2069,7 +2090,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ADM_DEPLOY_2}
+        attributes: {value: PAYLOAD_RX_ENABLE}
   - type: String
     attributes: {id: PIN_34_FUNCTION_TYPE}
     children:
@@ -2077,6 +2098,13 @@ children:
       children:
       - type: User
         attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_34_LAT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: High}
   - type: String
     attributes: {id: PIN_34_PERIPHERAL_FUNCTION}
     children:
@@ -2244,14 +2272,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_42_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ADM_DEPLOY_1}
+        attributes: {value: GNSS_PPS}
   - type: String
     attributes: {id: PIN_42_FUNCTION_TYPE}
     children:
@@ -2268,6 +2296,34 @@ children:
         attributes: {value: ''}
   - type: String
     attributes: {id: PIN_42_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_45_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Out}
+  - type: String
+    attributes: {id: PIN_45_FUNCTION_NAME}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: LCL_CAN_1_SET}
+  - type: String
+    attributes: {id: PIN_45_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_45_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
@@ -2447,14 +2503,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: PAYLOAD_RX}
   - type: String
     attributes: {id: PIN_52_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: UART2_URXD2}
   - type: String
     attributes: {id: PIN_52_LAT}
     children:
@@ -2468,28 +2524,28 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_53_DIR}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_53_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: LCL_CAN_1_SET}
+        attributes: {value: PAYLOAD_TX}
   - type: String
     attributes: {id: PIN_53_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: UART2_UTXD2}
   - type: String
     attributes: {id: PIN_53_LAT}
     children:
@@ -2503,7 +2559,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_54_FUNCTION_NAME}
     children:
@@ -3128,6 +3184,34 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_78_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Out}
+  - type: String
+    attributes: {id: PIN_78_FUNCTION_NAME}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PAYLOAD_TX_ENABLE}
+  - type: String
+    attributes: {id: PIN_78_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_78_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: GPIO}
+  - type: String
     attributes: {id: PIN_79_FUNCTION_NAME}
     children:
     - type: Values
@@ -3504,7 +3588,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '214067200'}
+        attributes: {id: core, value: '214124544'}
   - type: Hex
     attributes: {id: PIOA_PDR_VALUE}
     children:
@@ -3630,7 +3714,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '402653680'}
+        attributes: {id: core, value: '503316976'}
   - type: Boolean
     attributes: {id: PIOD_CLOCK_ENABLE}
     children:
@@ -3651,21 +3735,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1162215936'}
+        attributes: {id: core, value: '1095172096'}
   - type: Hex
     attributes: {id: PIOD_PDR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '411832816'}
+        attributes: {id: core, value: '512496112'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '21102592'}
+        attributes: {id: core, value: '1094844416'}
   - type: Hex
     attributes: {id: PIOE_ABCDSR1_VALUE}
     children:
@@ -3700,7 +3784,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '48'}
+        attributes: {id: core, value: '16'}
   - type: Hex
     attributes: {id: PIOE_PDR_VALUE}
     children:
@@ -3762,7 +3846,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67108904'}
+        attributes: {id: core, value: '67113000'}
   - type: Combo
     attributes: {id: PMC_PCK4_CSS}
     children:
@@ -3994,6 +4078,13 @@ children:
       children:
       - type: User
         attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SYSTICK_BUSY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
   - type: String
     attributes: {id: SYSTICK_CLOCK_FREQUENCY}
     children:
@@ -4255,6 +4346,48 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: UART2_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart2, value: 'true'}
+  - type: Integer
+    attributes: {id: UART2_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: UART2_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart2, value: 'true'}
+  - type: Boolean
+    attributes: {id: UART2_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: UART2_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart2, value: UART2_InterruptHandler}
+  - type: Boolean
+    attributes: {id: UART2_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart2, value: 'true'}
   - type: Integer
     attributes: {id: USART1_CLOCK_FREQUENCY}
     children:

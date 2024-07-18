@@ -150,27 +150,18 @@
 #define LCL_NAND_RST_Get()               ((PIOE_REGS->PIO_PDSR >> 4U) & 0x1U)
 #define LCL_NAND_RST_PIN                  PIO_PIN_PE4
 
-/*** Macros for ADM_DEPLOY_3 pin ***/
-#define ADM_DEPLOY_3_Set()               (PIOE_REGS->PIO_SODR = ((uint32_t)1U<<5U))
-#define ADM_DEPLOY_3_Clear()             (PIOE_REGS->PIO_CODR = ((uint32_t)1U<<5U))
-#define ADM_DEPLOY_3_Toggle()            (PIOE_REGS->PIO_ODSR ^= ((uint32_t)1U<<5U))
-#define ADM_DEPLOY_3_OutputEnable()      (PIOE_REGS->PIO_OER = ((uint32_t)1U<<5U))
-#define ADM_DEPLOY_3_InputEnable()       (PIOE_REGS->PIO_ODR = ((uint32_t)1U<<5U))
-#define ADM_DEPLOY_3_Get()               ((PIOE_REGS->PIO_PDSR >> 5U) & 0x1U)
-#define ADM_DEPLOY_3_PIN                  PIO_PIN_PE5
-
 /*** Macros for CAN_RX_1 pin ***/
 #define CAN_RX_1_Get()               ((PIOB_REGS->PIO_PDSR >> 3U) & 0x1U)
 #define CAN_RX_1_PIN                  PIO_PIN_PB3
 
-/*** Macros for ADM_DEPLOY_2 pin ***/
-#define ADM_DEPLOY_2_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<30U))
-#define ADM_DEPLOY_2_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<30U))
-#define ADM_DEPLOY_2_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<30U))
-#define ADM_DEPLOY_2_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<30U))
-#define ADM_DEPLOY_2_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<30U))
-#define ADM_DEPLOY_2_Get()               ((PIOD_REGS->PIO_PDSR >> 30U) & 0x1U)
-#define ADM_DEPLOY_2_PIN                  PIO_PIN_PD30
+/*** Macros for PAYLOAD_RX_ENABLE pin ***/
+#define PAYLOAD_RX_ENABLE_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<30U))
+#define PAYLOAD_RX_ENABLE_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<30U))
+#define PAYLOAD_RX_ENABLE_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<30U))
+#define PAYLOAD_RX_ENABLE_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<30U))
+#define PAYLOAD_RX_ENABLE_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<30U))
+#define PAYLOAD_RX_ENABLE_Get()               ((PIOD_REGS->PIO_PDSR >> 30U) & 0x1U)
+#define PAYLOAD_RX_ENABLE_PIN                  PIO_PIN_PD30
 
 /*** Macros for MCU_RTC_IN pin ***/
 #define MCU_RTC_IN_Get()               ((PIOA_REGS->PIO_PDSR >> 7U) & 0x1U)
@@ -205,14 +196,23 @@
 #define MEM_D4_Get()               ((PIOC_REGS->PIO_PDSR >> 4U) & 0x1U)
 #define MEM_D4_PIN                  PIO_PIN_PC4
 
-/*** Macros for ADM_DEPLOY_1 pin ***/
-#define ADM_DEPLOY_1_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<13U))
-#define ADM_DEPLOY_1_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<13U))
-#define ADM_DEPLOY_1_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<13U))
-#define ADM_DEPLOY_1_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<13U))
-#define ADM_DEPLOY_1_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<13U))
-#define ADM_DEPLOY_1_Get()               ((PIOA_REGS->PIO_PDSR >> 13U) & 0x1U)
-#define ADM_DEPLOY_1_PIN                  PIO_PIN_PA13
+/*** Macros for GNSS_PPS pin ***/
+#define GNSS_PPS_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<13U))
+#define GNSS_PPS_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<13U))
+#define GNSS_PPS_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<13U))
+#define GNSS_PPS_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<13U))
+#define GNSS_PPS_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<13U))
+#define GNSS_PPS_Get()               ((PIOA_REGS->PIO_PDSR >> 13U) & 0x1U)
+#define GNSS_PPS_PIN                  PIO_PIN_PA13
+
+/*** Macros for LCL_CAN_1_SET pin ***/
+#define LCL_CAN_1_SET_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<16U))
+#define LCL_CAN_1_SET_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<16U))
+#define LCL_CAN_1_SET_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<16U))
+#define LCL_CAN_1_SET_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<16U))
+#define LCL_CAN_1_SET_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<16U))
+#define LCL_CAN_1_SET_Get()               ((PIOA_REGS->PIO_PDSR >> 16U) & 0x1U)
+#define LCL_CAN_1_SET_PIN                  PIO_PIN_PA16
 
 /*** Macros for MEM_A19 pin ***/
 #define MEM_A19_Get()               ((PIOA_REGS->PIO_PDSR >> 23U) & 0x1U)
@@ -235,14 +235,13 @@
 #define ADM_ENABLE_2_Get()               ((PIOA_REGS->PIO_PDSR >> 14U) & 0x1U)
 #define ADM_ENABLE_2_PIN                  PIO_PIN_PA14
 
-/*** Macros for LCL_CAN_1_SET pin ***/
-#define LCL_CAN_1_SET_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<26U))
-#define LCL_CAN_1_SET_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<26U))
-#define LCL_CAN_1_SET_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<26U))
-#define LCL_CAN_1_SET_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<26U))
-#define LCL_CAN_1_SET_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<26U))
-#define LCL_CAN_1_SET_Get()               ((PIOD_REGS->PIO_PDSR >> 26U) & 0x1U)
-#define LCL_CAN_1_SET_PIN                  PIO_PIN_PD26
+/*** Macros for PAYLOAD_RX pin ***/
+#define PAYLOAD_RX_Get()               ((PIOD_REGS->PIO_PDSR >> 25U) & 0x1U)
+#define PAYLOAD_RX_PIN                  PIO_PIN_PD25
+
+/*** Macros for PAYLOAD_TX pin ***/
+#define PAYLOAD_TX_Get()               ((PIOD_REGS->PIO_PDSR >> 26U) & 0x1U)
+#define PAYLOAD_TX_PIN                  PIO_PIN_PD26
 
 /*** Macros for MEM_D6 pin ***/
 #define MEM_D6_Get()               ((PIOC_REGS->PIO_PDSR >> 6U) & 0x1U)
@@ -382,6 +381,15 @@
 #define I2C_SCK_PANELS_Get()               ((PIOA_REGS->PIO_PDSR >> 4U) & 0x1U)
 #define I2C_SCK_PANELS_PIN                  PIO_PIN_PA4
 
+/*** Macros for PAYLOAD_TX_ENABLE pin ***/
+#define PAYLOAD_TX_ENABLE_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<16U))
+#define PAYLOAD_TX_ENABLE_Get()               ((PIOD_REGS->PIO_PDSR >> 16U) & 0x1U)
+#define PAYLOAD_TX_ENABLE_PIN                  PIO_PIN_PD16
+
 /*** Macros for MCU_SWDIO pin ***/
 #define MCU_SWDIO_Get()               ((PIOB_REGS->PIO_PDSR >> 6U) & 0x1U)
 #define MCU_SWDIO_PIN                  PIO_PIN_PB6
@@ -437,15 +445,6 @@
 /*** Macros for I2C_SCK_SENS pin ***/
 #define I2C_SCK_SENS_Get()               ((PIOB_REGS->PIO_PDSR >> 5U) & 0x1U)
 #define I2C_SCK_SENS_PIN                  PIO_PIN_PB5
-
-/*** Macros for ADM_DEPLOY_4 pin ***/
-#define ADM_DEPLOY_4_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<9U))
-#define ADM_DEPLOY_4_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<9U))
-#define ADM_DEPLOY_4_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<9U))
-#define ADM_DEPLOY_4_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<9U))
-#define ADM_DEPLOY_4_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<9U))
-#define ADM_DEPLOY_4_Get()               ((PIOD_REGS->PIO_PDSR >> 9U) & 0x1U)
-#define ADM_DEPLOY_4_PIN                  PIO_PIN_PD9
 
 /*** Macros for MEM_A0 pin ***/
 #define MEM_A0_Get()               ((PIOC_REGS->PIO_PDSR >> 18U) & 0x1U)

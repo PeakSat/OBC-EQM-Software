@@ -18,7 +18,7 @@ void AmbientTemperatureTask::execute() {
     }
 
     while (true) {
-        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         for (uint8_t sensorCounter = 0; sensorCounter < NumberOfTemperatureSensors; sensorCounter++) {
             if (not sensors[sensorCounter].isDeviceConnected()) {
                 LOG_ERROR << "Temperature sensor with address " << sensors[sensorCounter].getI2CUserAddress()
@@ -32,7 +32,7 @@ void AmbientTemperatureTask::execute() {
 
         CommonParameters::boardTemperature1.setValue(ambientTemperature[0]);
         CommonParameters::boardTemperature2.setValue(ambientTemperature[1]);
-        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
