@@ -104,7 +104,8 @@ void TPProtocol::parseMessage(TPMessage &message) {
         }
             break;
         default:
-            ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);
+            LOG_INFO<<"CAN Message of Unknown type";
+            // ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);
             break;
     }
 }
