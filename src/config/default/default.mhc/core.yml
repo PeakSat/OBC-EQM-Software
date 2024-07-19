@@ -2160,14 +2160,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_37_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ADM_ENABLE_1}
+        attributes: {value: CAN_FAULT_1}
   - type: String
     attributes: {id: PIN_37_FUNCTION_TYPE}
     children:
@@ -2183,26 +2183,33 @@ children:
       - type: User
         attributes: {value: GPIO}
   - type: String
+    attributes: {id: PIN_38_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Out}
+  - type: String
     attributes: {id: PIN_38_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_D1}
+        attributes: {value: CAN_SILENT_1}
   - type: String
     attributes: {id: PIN_38_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_D1}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_38_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_39_FUNCTION_NAME}
     children:
@@ -2230,21 +2237,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_D3}
+        attributes: {value: CAN_FAULT_2}
   - type: String
     attributes: {id: PIN_40_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_D3}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_40_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_41_FUNCTION_NAME}
     children:
@@ -2594,7 +2601,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: LCL_CAN_1_RST}
+        attributes: {value: CAN_SILENT_2}
   - type: String
     attributes: {id: PIN_55_FUNCTION_TYPE}
     children:
@@ -2608,7 +2615,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: High}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_55_PERIPHERAL_FUNCTION}
     children:
@@ -2783,14 +2790,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_FAULT_1}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_63_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_63_LAT}
     children:
@@ -2804,42 +2811,42 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_DIR}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_SILENT_1}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_LAT}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: High}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_65_DIR}
     children:
@@ -3063,14 +3070,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_FAULT_2}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_73_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_73_LAT}
     children:
@@ -3084,42 +3091,42 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_74_DIR}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_74_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_SILENT_2}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_74_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_74_LAT}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: High}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_74_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_75_FUNCTION_NAME}
     children:
@@ -3434,21 +3441,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_TX_2}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_92_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MCAN1_CANTX1}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_92_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: B}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_93_FUNCTION_NAME}
     children:
@@ -3497,21 +3504,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_MRAM_ENABLE}
+        attributes: {value: CAN_TX_2}
   - type: String
     attributes: {id: PIN_97_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS0}
+        attributes: {value: MCAN1_CANTX1}
   - type: String
     attributes: {id: PIN_97_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_98_FUNCTION_NAME}
     children:
@@ -3588,7 +3595,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '214124544'}
+        attributes: {id: core, value: '209928192'}
   - type: Hex
     attributes: {id: PIOA_PDR_VALUE}
     children:
@@ -3602,7 +3609,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '201459712'}
+        attributes: {id: core, value: '201457664'}
   - type: Hex
     attributes: {id: PIOB_ABCDSR1_VALUE}
     children:
@@ -3665,7 +3672,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '4096'}
+        attributes: {id: core, value: '20480'}
   - type: Boolean
     attributes: {id: PIOC_CLOCK_ENABLE}
     children:
@@ -3686,14 +3693,14 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '40960'}
+        attributes: {id: core, value: '40962'}
   - type: Hex
     attributes: {id: PIOC_PDR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '4294926335'}
+        attributes: {id: core, value: '4294926325'}
   - type: Hex
     attributes: {id: PIOC_SODR_VALUE}
     children:
@@ -3707,7 +3714,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '4352'}
+        attributes: {id: core, value: '256'}
   - type: Hex
     attributes: {id: PIOD_ABCDSR2_VALUE}
     children:
@@ -3735,21 +3742,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1095172096'}
+        attributes: {id: core, value: '1095041024'}
   - type: Hex
     attributes: {id: PIOD_PDR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '512496112'}
+        attributes: {id: core, value: '512492016'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1094844416'}
+        attributes: {id: core, value: '1077936128'}
   - type: Hex
     attributes: {id: PIOE_ABCDSR1_VALUE}
     children:

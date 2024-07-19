@@ -171,26 +171,36 @@
 #define MCU_RTC_OUT_Get()               ((PIOA_REGS->PIO_PDSR >> 8U) & 0x1U)
 #define MCU_RTC_OUT_PIN                  PIO_PIN_PA8
 
-/*** Macros for ADM_ENABLE_1 pin ***/
-#define ADM_ENABLE_1_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<22U))
-#define ADM_ENABLE_1_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<22U))
-#define ADM_ENABLE_1_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<22U))
-#define ADM_ENABLE_1_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<22U))
-#define ADM_ENABLE_1_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<22U))
-#define ADM_ENABLE_1_Get()               ((PIOA_REGS->PIO_PDSR >> 22U) & 0x1U)
-#define ADM_ENABLE_1_PIN                  PIO_PIN_PA22
+/*** Macros for CAN_FAULT_1 pin ***/
+#define CAN_FAULT_1_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<22U))
+#define CAN_FAULT_1_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<22U))
+#define CAN_FAULT_1_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<22U))
+#define CAN_FAULT_1_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<22U))
+#define CAN_FAULT_1_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<22U))
+#define CAN_FAULT_1_Get()               ((PIOA_REGS->PIO_PDSR >> 22U) & 0x1U)
+#define CAN_FAULT_1_PIN                  PIO_PIN_PA22
 
-/*** Macros for MEM_D1 pin ***/
-#define MEM_D1_Get()               ((PIOC_REGS->PIO_PDSR >> 1U) & 0x1U)
-#define MEM_D1_PIN                  PIO_PIN_PC1
+/*** Macros for CAN_SILENT_1 pin ***/
+#define CAN_SILENT_1_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<1U))
+#define CAN_SILENT_1_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<1U))
+#define CAN_SILENT_1_Toggle()            (PIOC_REGS->PIO_ODSR ^= ((uint32_t)1U<<1U))
+#define CAN_SILENT_1_OutputEnable()      (PIOC_REGS->PIO_OER = ((uint32_t)1U<<1U))
+#define CAN_SILENT_1_InputEnable()       (PIOC_REGS->PIO_ODR = ((uint32_t)1U<<1U))
+#define CAN_SILENT_1_Get()               ((PIOC_REGS->PIO_PDSR >> 1U) & 0x1U)
+#define CAN_SILENT_1_PIN                  PIO_PIN_PC1
 
 /*** Macros for MEM_D2 pin ***/
 #define MEM_D2_Get()               ((PIOC_REGS->PIO_PDSR >> 2U) & 0x1U)
 #define MEM_D2_PIN                  PIO_PIN_PC2
 
-/*** Macros for MEM_D3 pin ***/
-#define MEM_D3_Get()               ((PIOC_REGS->PIO_PDSR >> 3U) & 0x1U)
-#define MEM_D3_PIN                  PIO_PIN_PC3
+/*** Macros for CAN_FAULT_2 pin ***/
+#define CAN_FAULT_2_Set()               (PIOC_REGS->PIO_SODR = ((uint32_t)1U<<3U))
+#define CAN_FAULT_2_Clear()             (PIOC_REGS->PIO_CODR = ((uint32_t)1U<<3U))
+#define CAN_FAULT_2_Toggle()            (PIOC_REGS->PIO_ODSR ^= ((uint32_t)1U<<3U))
+#define CAN_FAULT_2_OutputEnable()      (PIOC_REGS->PIO_OER = ((uint32_t)1U<<3U))
+#define CAN_FAULT_2_InputEnable()       (PIOC_REGS->PIO_ODR = ((uint32_t)1U<<3U))
+#define CAN_FAULT_2_Get()               ((PIOC_REGS->PIO_PDSR >> 3U) & 0x1U)
+#define CAN_FAULT_2_PIN                  PIO_PIN_PC3
 
 /*** Macros for MEM_D4 pin ***/
 #define MEM_D4_Get()               ((PIOC_REGS->PIO_PDSR >> 4U) & 0x1U)
@@ -247,14 +257,14 @@
 #define MEM_D6_Get()               ((PIOC_REGS->PIO_PDSR >> 6U) & 0x1U)
 #define MEM_D6_PIN                  PIO_PIN_PC6
 
-/*** Macros for LCL_CAN_1_RST pin ***/
-#define LCL_CAN_1_RST_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<24U))
-#define LCL_CAN_1_RST_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<24U))
-#define LCL_CAN_1_RST_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<24U))
-#define LCL_CAN_1_RST_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<24U))
-#define LCL_CAN_1_RST_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<24U))
-#define LCL_CAN_1_RST_Get()               ((PIOD_REGS->PIO_PDSR >> 24U) & 0x1U)
-#define LCL_CAN_1_RST_PIN                  PIO_PIN_PD24
+/*** Macros for CAN_SILENT_2 pin ***/
+#define CAN_SILENT_2_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<24U))
+#define CAN_SILENT_2_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<24U))
+#define CAN_SILENT_2_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<24U))
+#define CAN_SILENT_2_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<24U))
+#define CAN_SILENT_2_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<24U))
+#define CAN_SILENT_2_Get()               ((PIOD_REGS->PIO_PDSR >> 24U) & 0x1U)
+#define CAN_SILENT_2_PIN                  PIO_PIN_PD24
 
 /*** Macros for MEM_A20 pin ***/
 #define MEM_A20_Get()               ((PIOA_REGS->PIO_PDSR >> 24U) & 0x1U)
@@ -289,24 +299,6 @@
 #define LCL_CAN_2_RST_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<26U))
 #define LCL_CAN_2_RST_Get()               ((PIOA_REGS->PIO_PDSR >> 26U) & 0x1U)
 #define LCL_CAN_2_RST_PIN                  PIO_PIN_PA26
-
-/*** Macros for CAN_FAULT_1 pin ***/
-#define CAN_FAULT_1_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<21U))
-#define CAN_FAULT_1_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<21U))
-#define CAN_FAULT_1_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<21U))
-#define CAN_FAULT_1_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<21U))
-#define CAN_FAULT_1_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<21U))
-#define CAN_FAULT_1_Get()               ((PIOD_REGS->PIO_PDSR >> 21U) & 0x1U)
-#define CAN_FAULT_1_PIN                  PIO_PIN_PD21
-
-/*** Macros for CAN_SILENT_1 pin ***/
-#define CAN_SILENT_1_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<11U))
-#define CAN_SILENT_1_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<11U))
-#define CAN_SILENT_1_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<11U))
-#define CAN_SILENT_1_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<11U))
-#define CAN_SILENT_1_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<11U))
-#define CAN_SILENT_1_Get()               ((PIOA_REGS->PIO_PDSR >> 11U) & 0x1U)
-#define CAN_SILENT_1_PIN                  PIO_PIN_PA11
 
 /*** Macros for MEM_NAND_BUSY_2 pin ***/
 #define MEM_NAND_BUSY_2_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<20U))
@@ -351,24 +343,6 @@
 #define I2C_MTQ_SCK_Get()               ((PIOD_REGS->PIO_PDSR >> 28U) & 0x1U)
 #define I2C_MTQ_SCK_PIN                  PIO_PIN_PD28
 
-/*** Macros for CAN_FAULT_2 pin ***/
-#define CAN_FAULT_2_Set()               (PIOA_REGS->PIO_SODR = ((uint32_t)1U<<5U))
-#define CAN_FAULT_2_Clear()             (PIOA_REGS->PIO_CODR = ((uint32_t)1U<<5U))
-#define CAN_FAULT_2_Toggle()            (PIOA_REGS->PIO_ODSR ^= ((uint32_t)1U<<5U))
-#define CAN_FAULT_2_OutputEnable()      (PIOA_REGS->PIO_OER = ((uint32_t)1U<<5U))
-#define CAN_FAULT_2_InputEnable()       (PIOA_REGS->PIO_ODR = ((uint32_t)1U<<5U))
-#define CAN_FAULT_2_Get()               ((PIOA_REGS->PIO_PDSR >> 5U) & 0x1U)
-#define CAN_FAULT_2_PIN                  PIO_PIN_PA5
-
-/*** Macros for CAN_SILENT_2 pin ***/
-#define CAN_SILENT_2_Set()               (PIOD_REGS->PIO_SODR = ((uint32_t)1U<<17U))
-#define CAN_SILENT_2_Clear()             (PIOD_REGS->PIO_CODR = ((uint32_t)1U<<17U))
-#define CAN_SILENT_2_Toggle()            (PIOD_REGS->PIO_ODSR ^= ((uint32_t)1U<<17U))
-#define CAN_SILENT_2_OutputEnable()      (PIOD_REGS->PIO_OER = ((uint32_t)1U<<17U))
-#define CAN_SILENT_2_InputEnable()       (PIOD_REGS->PIO_ODR = ((uint32_t)1U<<17U))
-#define CAN_SILENT_2_Get()               ((PIOD_REGS->PIO_PDSR >> 17U) & 0x1U)
-#define CAN_SILENT_2_PIN                  PIO_PIN_PD17
-
 /*** Macros for OBC_UART_RX pin ***/
 #define OBC_UART_RX_Get()               ((PIOA_REGS->PIO_PDSR >> 9U) & 0x1U)
 #define OBC_UART_RX_PIN                  PIO_PIN_PA9
@@ -410,17 +384,13 @@
 #define MEM_NAND_WR_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 10U) & 0x1U)
 #define MEM_NAND_WR_ENABLE_PIN                  PIO_PIN_PC10
 
-/*** Macros for CAN_TX_2 pin ***/
-#define CAN_TX_2_Get()               ((PIOD_REGS->PIO_PDSR >> 12U) & 0x1U)
-#define CAN_TX_2_PIN                  PIO_PIN_PD12
-
 /*** Macros for MEM_MRAM_OUT_ENABLE pin ***/
 #define MEM_MRAM_OUT_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 11U) & 0x1U)
 #define MEM_MRAM_OUT_ENABLE_PIN                  PIO_PIN_PC11
 
-/*** Macros for MEM_MRAM_ENABLE pin ***/
-#define MEM_MRAM_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 14U) & 0x1U)
-#define MEM_MRAM_ENABLE_PIN                  PIO_PIN_PC14
+/*** Macros for CAN_TX_2 pin ***/
+#define CAN_TX_2_Get()               ((PIOC_REGS->PIO_PDSR >> 14U) & 0x1U)
+#define CAN_TX_2_PIN                  PIO_PIN_PC14
 
 /*** Macros for MEM_A18 pin ***/
 #define MEM_A18_Get()               ((PIOA_REGS->PIO_PDSR >> 1U) & 0x1U)
