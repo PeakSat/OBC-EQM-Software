@@ -16,7 +16,7 @@
 #include "MRAMTask.hpp"
 #include "PayloadTestTask.hpp"
 
-#define IDLE_TASK_SIZE 200
+#define IDLE_TASK_SIZE 1400
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
@@ -35,11 +35,12 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-    uartGatekeeperTask.emplace();
-    timeKeepingTask.emplace();
-    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
-    mcuTemperatureTask.emplace();
+    initializeTasks();
+//    uartGatekeeperTask.emplace();
+//    timeKeepingTask.emplace();
+//    ambientTemperatureTask.emplace();
+//    watchdogTask.emplace();
+//    mcuTemperatureTask.emplace();
     tcHandlingTask.emplace();
     housekeepingTask.emplace();
     canGatekeeperTask.emplace();
@@ -49,11 +50,11 @@ extern "C" void main_cpp() {
     mramTask.emplace();
 
 
-    ambientTemperatureTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-    uartGatekeeperTask->createTask();
-    watchdogTask->createTask();
+//    ambientTemperatureTask->createTask();
+//    mcuTemperatureTask->createTask();
+//    timeKeepingTask->createTask();
+//    uartGatekeeperTask->createTask();
+//    watchdogTask->createTask();
     tcHandlingTask->createTask();
     housekeepingTask->createTask();
     canGatekeeperTask->createTask();
@@ -61,6 +62,8 @@ extern "C" void main_cpp() {
     payloadTestTask->createTask();
     nandTask->createTask();
     mramTask->createTask();
+
+    resetChecks();
 
     vTaskStartScheduler();
 

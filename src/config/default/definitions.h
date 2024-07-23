@@ -58,6 +58,7 @@
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/efc/plib_efc.h"
 #include "peripheral/rtc/plib_rtc.h"
+#include "peripheral/rstc/plib_rstc.h"
 #include "system/time/sys_time.h"
 #include "peripheral/afec/plib_afec0.h"
 #include "peripheral/smc/plib_smc.h"

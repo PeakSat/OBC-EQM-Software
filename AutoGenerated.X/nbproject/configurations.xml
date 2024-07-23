@@ -41,6 +41,10 @@
               <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.h</itemPath>
               <itemPath>../src/config/default/peripheral/pwm/plib_pwm_common.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f16" displayName="rstc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/rstc/plib_rstc_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/rstc/plib_rstc.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.h</itemPath>
@@ -267,6 +271,9 @@
             <logicalFolder name="f13" displayName="pwm" projectFiles="true">
               <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f16" displayName="rstc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/rstc/plib_rstc.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.c</itemPath>
             </logicalFolder>
@@ -335,6 +342,7 @@
         <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/pwm0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/rstc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/smc.yml</itemPath>

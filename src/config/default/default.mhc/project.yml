@@ -13,13 +13,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: B100B38CD3241786B832B514C84B1F85
-- generatedChecksum: 153114AED44FDCFB07C6B17143884155
+- generatedChecksum: FC9381924A1D201E9DACE18AD756A4A5
   logicalPath: config/default
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 153114AED44FDCFB07C6B17143884155
+  userChecksum: FC9381924A1D201E9DACE18AD756A4A5
 - generatedChecksum: 7C81F1AF6D91416668D89A782A1E52A4
   logicalPath: config/default
   name: interrupts.c
@@ -48,13 +48,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 475A954232EF87087BB28D8DFBE18B71
-- generatedChecksum: 4ADA34D64E3EA66019FEA2E030D723CA
+- generatedChecksum: 376B784B885A98D3FB126454FF3414E1
   logicalPath: config/default/peripheral/clk
   name: plib_clk.c
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 4ADA34D64E3EA66019FEA2E030D723CA
+  userChecksum: 376B784B885A98D3FB126454FF3414E1
 - generatedChecksum: 2788D041CAB75857A7CECCD3818C7110
   logicalPath: config/default/peripheral/efc
   name: plib_efc.c
@@ -90,13 +90,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 80F34308835DA5A5D4FF7B3E63164B2B
-- generatedChecksum: 57C20F07EFCFB14786960D50BA0C0A0D
+- generatedChecksum: F40AA9C5C00EFE5EEE8B72F5FE036AC1
   logicalPath: config/default/peripheral/pio
   name: plib_pio.c
   physicalPath: peripheral/pio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 57C20F07EFCFB14786960D50BA0C0A0D
+  userChecksum: F40AA9C5C00EFE5EEE8B72F5FE036AC1
 - generatedChecksum: A79FFDB71DC726548B9A1BB5B23F8234
   logicalPath: config/default/peripheral/pwm
   name: plib_pwm0.c
@@ -104,6 +104,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: A79FFDB71DC726548B9A1BB5B23F8234
+- generatedChecksum: 3A870C00F481B60DBDE33A12A099DA4B
+  logicalPath: config/default/peripheral/rstc
+  name: plib_rstc.c
+  physicalPath: peripheral/rstc
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 3A870C00F481B60DBDE33A12A099DA4B
 - generatedChecksum: 965F4B7DCCF70282D62AE56A5A441F2E
   logicalPath: config/default/peripheral/rtc
   name: plib_rtc.c
@@ -356,13 +363,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 01EC8AA883679157995565B53245B263
-- generatedChecksum: 647872E4517A2A5A0B42A2BB6C326CC8
+- generatedChecksum: D1CE56294EA28299789C189F1FC479A0
   logicalPath: config/default
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 647872E4517A2A5A0B42A2BB6C326CC8
+  userChecksum: D1CE56294EA28299789C189F1FC479A0
 - generatedChecksum: E4DDC7F84738825A532EDB866BEDBA03
   logicalPath: config/default
   name: device.h
@@ -699,13 +706,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: C2BD9B323B9616961250C3FF1B3443B1
-- generatedChecksum: B081C1360DC77FDF50D26F53CB11B982
+- generatedChecksum: 5D7614B104B3291D7BD643FA65B1B955
   logicalPath: config/default/peripheral/pio
   name: plib_pio.h
   physicalPath: peripheral/pio
   security: NON_SECURE
   type: HEADER
-  userChecksum: B081C1360DC77FDF50D26F53CB11B982
+  userChecksum: 5D7614B104B3291D7BD643FA65B1B955
 - generatedChecksum: AD4B052762D9DD83A0AFD7FDF3F6633E
   logicalPath: config/default/peripheral/pwm
   name: plib_pwm0.h
@@ -720,6 +727,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: E1F7C89AE3F4E8212824DB5B9A77E63E
+- generatedChecksum: 363475AF7CBDA60CBCAD313E2E75F2D5
+  logicalPath: config/default/peripheral/rstc
+  name: plib_rstc.h
+  physicalPath: peripheral/rstc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 363475AF7CBDA60CBCAD313E2E75F2D5
+- generatedChecksum: 1CB8D741697F33BD16D067BEC9FB26C9
+  logicalPath: config/default/peripheral/rstc
+  name: plib_rstc_common.h
+  physicalPath: peripheral/rstc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 1CB8D741697F33BD16D067BEC9FB26C9
 - generatedChecksum: EC3B6FDE35CBCDE4899B755721A7268D
   logicalPath: config/default/peripheral/rtc
   name: plib_rtc.h
@@ -1287,13 +1308,13 @@ files:
   security: NON_SECURE
   type: LINKER
   userChecksum: BABE3173C2A58B8C7705D829124F56F0
-- generatedChecksum: 21BEBD4CC8339A81EF95BCC0B390AE6A
+- generatedChecksum: E6F1CA9A58834FDFACF4C20B5EF2F867
   logicalPath: ''
   name: pin_configurations.csv
   physicalPath: ''
   security: NON_SECURE
   type: IMPORTANT
-  userChecksum: 21BEBD4CC8339A81EF95BCC0B390AE6A
+  userChecksum: E6F1CA9A58834FDFACF4C20B5EF2F867
 format_version: v1.0
 libraries: []
 settings: []

@@ -11,3 +11,5 @@
 #include "CANTestTask.hpp"
 
 void initializeTasks();
+
+void resetChecks();

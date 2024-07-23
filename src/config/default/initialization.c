@@ -158,6 +158,8 @@ void SYS_Initialize ( void* data )
 
 	RTC_Initialize();
 
+	RSTC_Initialize();
+
     AFEC0_Initialize();
 
     SMC_Initialize();
