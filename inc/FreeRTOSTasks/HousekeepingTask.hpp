@@ -24,7 +24,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
-                          this, configMAX_PRIORITIES - 1, this->taskStack,
+                          this, tskIDLE_PRIORITY + 2, this->taskStack,
                           &(this->taskBuffer));
     }
 

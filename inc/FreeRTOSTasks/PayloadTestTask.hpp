@@ -24,7 +24,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask < PayloadTestTask > , this->TaskName, PayloadTestTask::TaskStackDepth, this,
-                          configMAX_PRIORITIES - 1, this->taskStack, &(this->taskBuffer));
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 };
 

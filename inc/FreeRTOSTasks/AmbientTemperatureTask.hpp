@@ -8,7 +8,7 @@
  */
 class AmbientTemperatureTask : public Task {
 private:
-    const uint16_t DelayMs = 1000;
+    const uint16_t DelayMs = 60000;
 
     /**
      * Number of sensors on the PCB
@@ -44,7 +44,7 @@ public:
     void createTask() {
         taskHandle = xTaskCreateStatic(vClassTask < AmbientTemperatureTask > , this->TaskName,
                                        AmbientTemperatureTask::TaskStackDepth, this,
-                                       tskIDLE_PRIORITY + 2, this->taskStack,
+                                       tskIDLE_PRIORITY + 1, this->taskStack,
                                        &(this->taskBuffer));
     }
 

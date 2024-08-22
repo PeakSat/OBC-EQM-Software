@@ -7,7 +7,7 @@
  */
 class MCUTemperatureTask : public Task {
 private:
-    const uint16_t delayMs = 10000;
+    const uint16_t delayMs = 65000;
 
     const static inline uint16_t TaskStackDepth = 1000;
 
@@ -20,7 +20,7 @@ public:
 
     void createTask() {
         xTaskCreateStatic(vClassTask<MCUTemperatureTask>, this->TaskName, MCUTemperatureTask::TaskStackDepth, this,
-                          tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 
 };
