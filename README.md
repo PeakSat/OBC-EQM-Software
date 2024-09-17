@@ -49,7 +49,7 @@ For more detailed installation instructions, including how to integrate with a m
    ```
 7. Add CMake flags:
    ```shell
-   cmake -B cmake-build-debug/build/Debug -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" -DCMAKE_BUILD_TYPE=Debug .
+   cmake -B cmake-build-debug/build/Debug -DCMAKE_TOOLCHAIN_FILE="cmake-build-debug/build/Debug/generators/conan_toolchain.cmake" -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" -DCMAKE_BUILD_TYPE=Debug .
    ```
 8. Build the project:
    ```shell
