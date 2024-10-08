@@ -83,7 +83,7 @@ static void CLK_PLLAInitialize(void)
 {
     /* Configure and Enable PLLA */
     PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3fU) |
-                              CKGR_PLLAR_MULA(24) |
+                              CKGR_PLLAR_MULA(13) |
                               CKGR_PLLAR_DIVA(1U);
 
     while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk)
@@ -109,7 +109,7 @@ static void CLK_MasterClockInitialize(void)
     }
 
     /* Program PMC_MCKR.MDIV and Wait for PMC_SR.MCKRDY to be set   */
-    PMC_REGS->PMC_MCKR = (PMC_REGS->PMC_MCKR & ~PMC_MCKR_MDIV_Msk) | PMC_MCKR_MDIV_PCK_DIV2;
+    PMC_REGS->PMC_MCKR = (PMC_REGS->PMC_MCKR & ~PMC_MCKR_MDIV_Msk) | PMC_MCKR_MDIV_PCK_DIV4;
     while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk)
     {
         /* Nothing to do */

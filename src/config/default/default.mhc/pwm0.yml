@@ -108,7 +108,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+        - {type: Value, value: '**** PWM Frequency is 1400.0 Hz ****'}
       - type: Boolean
         attributes: {id: visible}
         children:
@@ -212,7 +212,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+        - {type: Value, value: '**** PWM Frequency is 1400.0 Hz ****'}
       - type: Boolean
         attributes: {id: visible}
         children:
@@ -325,7 +325,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+        - {type: Value, value: '**** PWM Frequency is 1400.0 Hz ****'}
       - type: Boolean
         attributes: {id: visible}
         children:
@@ -438,7 +438,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+        - {type: Value, value: '**** PWM Frequency is 1400.0 Hz ****'}
       - type: Boolean
         attributes: {id: visible}
         children:

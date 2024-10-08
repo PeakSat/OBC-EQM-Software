@@ -23,11 +23,11 @@ bool MRAMTask::isMRAMAlive() {
 
 void MRAMTask::execute() {
     LOG_DEBUG << "Runtime init: " << this->TaskName;
-//    vTaskSuspend(NULL);
+   vTaskSuspend(NULL);
 
     mramLCL.enableLCL();
 
-    areYouAliveAddress = 0x200000 - 1;
+    areYouAliveAddress = 100;
 
     mram.mramWriteByte(areYouAliveAddress, areYouAliveValue);
 
@@ -36,17 +36,20 @@ void MRAMTask::execute() {
 
     while (true) {
 //        LOG_DEBUG << "Runtime entered: " << this->TaskName;
-        if (isMRAMAlive()) {
-            for (uint8_t address = 0; address < 150; address++) {
-                mram.mramWriteByte(randomAddressOffset + address, randomValueOffset + address);
-            }
-        }
+        // if (isMRAMAlive()) {
+        //     for (uint8_t address = 0; address < 150; address++) {
+        //         mram.mramWriteByte(randomAddressOffset + address, randomValueOffset + address);
+        //     }
+        // }
 
         bool readWasCorrect = true;
         if (isMRAMAlive()) {
-            for (uint8_t address = 0; address < 150; address++) {
+            for (uint32_t address = 0x200000 - 100000; address < 0x200000 - 1; address++) {
+                mram.mramWriteByte(randomAddressOffset + address, randomValueOffset + (uint8_t)(address%250));
+                // SYSTICK_DelayUs(10);
                 readData = mram.mramReadByte(randomAddressOffset + address);
-                if (readData != (randomValueOffset + address)) {
+                // SYSTICK_DelayUs(10);
+                if (readData != (randomValueOffset + (uint8_t)(address%250))) {
                     LOG_ERROR << "MRAM: offset = " << randomAddressOffset << ",value = " << address
                         << " had a wrong value = " << readData;
                     readWasCorrect = false;
@@ -67,9 +70,9 @@ void MRAMTask::execute() {
             randomValueOffset = 0;
         }
 
-//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
-//        vTaskResume(NANDTask::nandTaskHandle);
-//        vTaskSuspend(NULL);
+       LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+       vTaskResume(NANDTask::nandTaskHandle);
+       vTaskSuspend(NULL);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }

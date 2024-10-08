@@ -37,29 +37,29 @@ extern "C" void main_cpp() {
 
 //    initializeTasks();
     uartGatekeeperTask.emplace();
-    timeKeepingTask.emplace();
-    ambientTemperatureTask.emplace();
+    // timeKeepingTask.emplace();
+    // ambientTemperatureTask.emplace();
     watchdogTask.emplace();
-    mcuTemperatureTask.emplace();
-    tcHandlingTask.emplace();
-    housekeepingTask.emplace();
-    canGatekeeperTask.emplace();
-    canTestTask.emplace();
-    payloadTestTask.emplace();
+    // mcuTemperatureTask.emplace();
+    // tcHandlingTask.emplace();
+    // housekeepingTask.emplace();
+    // canGatekeeperTask.emplace();
+    // canTestTask.emplace();
+    // payloadTestTask.emplace();
     nandTask.emplace();
     mramTask.emplace();
 
 
-    ambientTemperatureTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
+    // ambientTemperatureTask->createTask();
+    // mcuTemperatureTask->createTask();
+    // timeKeepingTask->createTask();
     uartGatekeeperTask->createTask();
     watchdogTask->createTask();
-    tcHandlingTask->createTask();
-    housekeepingTask->createTask();
-    canGatekeeperTask->createTask();
-    canTestTask->createTask();
-    payloadTestTask->createTask();
+    // tcHandlingTask->createTask();
+    // housekeepingTask->createTask();
+    // canGatekeeperTask->createTask();
+    // canTestTask->createTask();
+    // payloadTestTask->createTask();
     nandTask->createTask();
     mramTask->createTask();
 

@@ -1,0 +1,21 @@
+{
+    "version": 8,    
+    "vendor": {
+        "conan": {}
+    },
+    "configurePresets": [
+        {
+            "name": "Preset_OBC",
+            "displayName": "OBC_test_preset",
+            "binaryDir": "${sourceDir}/cmake-build-debug/build/Debug",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake-build-debug/build/Debug/generators/conan_toolchain.cmake",
+                "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
+                "CMAKE_C_COMPILER": "arm-none-eabi-gcc"
+            }
+        }
+    ]
+
+}

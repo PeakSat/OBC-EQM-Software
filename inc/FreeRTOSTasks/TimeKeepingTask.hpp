@@ -4,7 +4,7 @@
 
 class TimeKeepingTask : public Task {
 private:
-    const uint16_t DelayMs = 1100;
+    const uint16_t DelayMs = 1200;
 
     const static inline uint16_t TaskStackDepth = 2000;
 
