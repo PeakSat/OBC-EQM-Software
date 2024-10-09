@@ -3,9 +3,15 @@
 #include <etl/String.hpp>
 #include "LCLDefinitions.hpp"
 #include "MRAMTask.hpp"
+#include "semphr.h"
+#include "TaskInitialization.hpp"
 
 void NANDTask::execute() {
     LOG_DEBUG << "Runtime init: " << this->TaskName;
+    while(!takeSemaphoreGroupA()){
+        LOG_DEBUG << "NAND Found semaphore Locked";
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
     MT29F mt29f(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
 
     LCL &nandLCL = LCLDefinitions::lclArray[LCLDefinitions::NANDFlash];
@@ -27,8 +33,13 @@ void NANDTask::execute() {
             failedTries++;
         }
     }
+    releaseSemaphoreGroupA();
     while (true) {
-        //LOG_DEBUG << "Runtime entered: " << this->TaskName;
+        while(!takeSemaphoreGroupA()){
+            LOG_DEBUG << "NAND Found semaphore Locked";
+            vTaskDelay(pdMS_TO_TICKS(500));
+        }
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         /* ID */
         for (failedTries = 0; failedTries < 3;) {
             if (mt29f.isNANDAlive()) {
@@ -149,9 +160,11 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-       LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
-       vTaskResume(MRAMTask::mramTaskHandle);
-       vTaskSuspend(NULL);
+        releaseSemaphoreGroupA();
+    //    LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+    //    LOG_DEBUG << "Runtime is resumming MRAM";
+    //    vTaskResume(MRAMTask::mramTaskHandle);
+    //    vTaskSuspend(NULL);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }

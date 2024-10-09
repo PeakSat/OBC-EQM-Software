@@ -202,7 +202,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: Warning!!! Error 104.082%}
+        - {type: Value, value: Warning!!! Error 1.010%}
       - type: Boolean
         attributes: {id: visible}
         children:
@@ -222,7 +222,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: Warning!!! Error 1.010%}
+        - {type: Value, value: Warning!!! Error 2.564%}
       - type: Boolean
         attributes: {id: visible}
         children:

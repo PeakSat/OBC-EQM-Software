@@ -139,38 +139,36 @@ void SYS_Initialize ( void* data )
     /* MISRA C-2012 Rule 2.2 deviated in this file.  Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1 */
 
 
-    EFC_Initialize();
+  EFC_Initialize();
   
-    CLOCK_Initialize();
+  CLOCK_Initialize();
+  
 	PIO_Initialize();
 
-    XDMAC_Initialize();
-
-
+  XDMAC_Initialize();
 
 	SYSTICK_TimerInitialize();
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
 	WDT_Initialize();
 
-
-    PWM0_Initialize();
+  PWM0_Initialize();
 
 	RTC_Initialize();
 
 	RSTC_Initialize();
 
-    AFEC0_Initialize();
+  AFEC0_Initialize();
 
-    SMC_Initialize();
+  SMC_Initialize();
 
 	UART2_Initialize();
 
 	UART0_Initialize();
 
-    MCAN0_Initialize();
+  MCAN0_Initialize();
 
-    MCAN1_Initialize();
+  MCAN1_Initialize();
 
 	TWIHS1_Initialize();
 

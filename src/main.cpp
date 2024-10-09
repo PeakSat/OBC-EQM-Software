@@ -35,10 +35,11 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-//    initializeTasks();
+    // initializeTasks();
+    initializeSemaphores();
     uartGatekeeperTask.emplace();
     // timeKeepingTask.emplace();
-    // ambientTemperatureTask.emplace();
+    ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     // mcuTemperatureTask.emplace();
     // tcHandlingTask.emplace();
@@ -49,11 +50,10 @@ extern "C" void main_cpp() {
     nandTask.emplace();
     mramTask.emplace();
 
-
-    // ambientTemperatureTask->createTask();
+    uartGatekeeperTask->createTask();
+    ambientTemperatureTask->createTask();
     // mcuTemperatureTask->createTask();
     // timeKeepingTask->createTask();
-    uartGatekeeperTask->createTask();
     watchdogTask->createTask();
     // tcHandlingTask->createTask();
     // housekeepingTask->createTask();
@@ -62,6 +62,7 @@ extern "C" void main_cpp() {
     // payloadTestTask->createTask();
     nandTask->createTask();
     mramTask->createTask();
+    
 
 //    resetChecks();
 

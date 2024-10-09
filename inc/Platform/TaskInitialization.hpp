@@ -9,7 +9,14 @@
 #include "WatchdogTask.hpp"
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
+#include "semphr.h"
 
 void initializeTasks();
+
+void initializeSemaphores();
+
+bool takeSemaphoreGroupA();
+
+void releaseSemaphoreGroupA();
 
 void resetChecks();

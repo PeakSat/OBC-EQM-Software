@@ -14,6 +14,30 @@ void initializeTasks(){
     watchdogTask->createTask();
 }
 
+SemaphoreHandle_t Semaphore_Group_A = NULL;
+
+void initializeSemaphores(){
+    Semaphore_Group_A = xSemaphoreCreateMutex();
+
+    if( Semaphore_Group_A == NULL )
+    {
+        while(1){
+
+        }
+    }
+}
+
+bool takeSemaphoreGroupA(){
+    if(xSemaphoreTake(Semaphore_Group_A, ( TickType_t ) 10) == pdTRUE){
+        return true;
+    }
+    return false;
+}
+
+void releaseSemaphoreGroupA(){
+    xSemaphoreGive(Semaphore_Group_A);
+}
+
 void resetChecks(){
     RSTC_RESET_CAUSE resetCause = RSTC_ResetCauseGet();
     if(resetCause == RSTC_GENERAL_RESET){

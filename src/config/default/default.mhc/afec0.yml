@@ -145,7 +145,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: afec0, value: '5250000'}
+        attributes: {id: afec0, value: '12500000'}
   - type: Comment
     attributes: {id: AFEC_CLK_ENABLE_COMMENT}
     children:
@@ -170,7 +170,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: '**** Conversion Time is 4.38095238095 us ****'}
+        - {type: Value, value: '**** Conversion Time is 1.84 us ****'}
   - type: Comment
     attributes: {id: AFEC_NVIC_ENABLE_COMMENT}
     children:

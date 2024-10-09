@@ -10,13 +10,13 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart0, value: '22'}
+        attributes: {id: uart0, value: '54'}
   - type: Integer
     attributes: {id: UART_CLOCK_FREQ}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart0, value: '42000000'}
+        attributes: {id: uart0, value: '100000000'}
 - type: ElementPosition
   attributes: {x: '188', y: '117', id: uart0}

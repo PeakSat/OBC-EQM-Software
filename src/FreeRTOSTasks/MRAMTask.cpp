@@ -1,6 +1,7 @@
 #include "MRAMTask.hpp"
 #include "LCLDefinitions.hpp"
-#include "NANDTask.hpp"
+#include "semphr.h"
+#include "TaskInitialization.hpp"
 
 bool MRAMTask::isMRAMAlive() {
 
@@ -23,7 +24,11 @@ bool MRAMTask::isMRAMAlive() {
 
 void MRAMTask::execute() {
     LOG_DEBUG << "Runtime init: " << this->TaskName;
-   vTaskSuspend(NULL);
+//    vTaskSuspend(NULL);
+    while(!takeSemaphoreGroupA()){
+        LOG_DEBUG << "MRAM Found semaphore Locked";
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
 
     mramLCL.enableLCL();
 
@@ -33,9 +38,14 @@ void MRAMTask::execute() {
 
     uint32_t randomAddressOffset = 0;
     uint8_t randomValueOffset = 0, readData = 0;
+    releaseSemaphoreGroupA();
 
     while (true) {
-//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+        while(!takeSemaphoreGroupA()){
+            LOG_DEBUG << "MRAM Found semaphore Locked";
+            vTaskDelay(pdMS_TO_TICKS(500));
+        }
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
         // if (isMRAMAlive()) {
         //     for (uint8_t address = 0; address < 150; address++) {
         //         mram.mramWriteByte(randomAddressOffset + address, randomValueOffset + address);
@@ -71,9 +81,13 @@ void MRAMTask::execute() {
         }
 
        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
-       vTaskResume(NANDTask::nandTaskHandle);
-       vTaskSuspend(NULL);
-
+    //    LOG_DEBUG << "Runtime is resuming NAND";
+    //     vTaskResume(NANDTask::nandTaskHandle);
+    //     vTaskSuspend(NULL);
+        // LOG_DEBUG << "Runtime is resuming Amb Temp";
+        // vTaskResume(ambientTemperatureTask->ambientTemperatureTaskHandle);
+        // vTaskSuspend(NULL);
+        releaseSemaphoreGroupA();
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

@@ -104,13 +104,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: A79FFDB71DC726548B9A1BB5B23F8234
-- generatedChecksum: 3A870C00F481B60DBDE33A12A099DA4B
+- generatedChecksum: 02E10280864D82C02364E438CDF0D471
   logicalPath: config/default/peripheral/rstc
   name: plib_rstc.c
   physicalPath: peripheral/rstc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3A870C00F481B60DBDE33A12A099DA4B
+  userChecksum: 02E10280864D82C02364E438CDF0D471
 - generatedChecksum: 965F4B7DCCF70282D62AE56A5A441F2E
   logicalPath: config/default/peripheral/rtc
   name: plib_rtc.c
@@ -132,13 +132,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 930996D4D6EABFD320938F653EDB7256
-- generatedChecksum: E259F9B57B096692177BB72010710E8A
+- generatedChecksum: 88D21E7A1F8E1CF8B8830310C2F1B0EF
   logicalPath: config/default/peripheral/twihs/master
   name: plib_twihs1_master.c
   physicalPath: peripheral/twihs/master
   security: NON_SECURE
   type: SOURCE
-  userChecksum: E259F9B57B096692177BB72010710E8A
+  userChecksum: A84B1C5BC2A0D77B86A0DB43B27BB7D3
 - generatedChecksum: 812A1CF31D54FD8332387A48EC598B1F
   logicalPath: config/default/peripheral/uart
   name: plib_uart0.c

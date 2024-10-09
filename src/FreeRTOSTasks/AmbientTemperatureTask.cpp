@@ -1,6 +1,12 @@
 #include "AmbientTemperatureTask.hpp"
+#include "semphr.h"
+#include "TaskInitialization.hpp"
 
 void AmbientTemperatureTask::execute() {
+    while(!takeSemaphoreGroupA()){
+        LOG_DEBUG << "AMB_TEMP Found semaphore Locked";
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
     LOG_DEBUG << "Runtime init: " << this->TaskName;
     uint8_t numberOfDisconnectedSensors = 0;
 
@@ -14,11 +20,20 @@ void AmbientTemperatureTask::execute() {
 
     if (numberOfDisconnectedSensors == NumberOfTemperatureSensors) {
         LOG_ERROR << "Suspending ambient temperature task";
+        releaseSemaphoreGroupA();
         vTaskSuspend(taskHandle);
     }
+    LOG_DEBUG<<"No errors on ambient temperatures";
+
+    releaseSemaphoreGroupA();
+
 
     while (true) {
-//        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+        LOG_DEBUG << "Runtime entered: " << this->TaskName;
+        while(!takeSemaphoreGroupA()){
+            LOG_DEBUG << "AMB_TEMP Found semaphore Locked";
+            vTaskDelay(pdMS_TO_TICKS(500));
+        }
         for (uint8_t sensorCounter = 0; sensorCounter < NumberOfTemperatureSensors; sensorCounter++) {
             if (not sensors[sensorCounter].isDeviceConnected()) {
                 LOG_ERROR << "Temperature sensor with address " << sensors[sensorCounter].getI2CUserAddress()
@@ -32,7 +47,8 @@ void AmbientTemperatureTask::execute() {
 
         CommonParameters::boardTemperature1.setValue(ambientTemperature[0]);
         CommonParameters::boardTemperature2.setValue(ambientTemperature[1]);
-//        LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
+        LOG_DEBUG << "Exiting Amb temperature";
+        releaseSemaphoreGroupA();
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

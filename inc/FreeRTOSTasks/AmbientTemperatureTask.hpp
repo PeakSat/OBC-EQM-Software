@@ -32,14 +32,16 @@ private:
      */
     etl::array<float, NumberOfTemperatureSensors> ambientTemperature = {0, 0};
 
-    const static inline uint16_t TaskStackDepth = 2000;
+    const static inline uint16_t TaskStackDepth = 10000;
 
     StackType_t taskStack[TaskStackDepth];
 
 public:
     void execute();
 
-    AmbientTemperatureTask() : Task("ExternalTemperatureSensors") {}
+    AmbientTemperatureTask() : Task("AmbientTemperatureSensors") {}
+
+    static inline TaskHandle_t ambientTemperatureTaskHandle;
 
     void createTask() {
         taskHandle = xTaskCreateStatic(vClassTask < AmbientTemperatureTask > , this->TaskName,

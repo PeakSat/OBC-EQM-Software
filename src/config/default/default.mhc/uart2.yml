@@ -10,7 +10,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart2, value: '22'}
+        attributes: {id: uart2, value: '54'}
   - type: KeyValueSet
     attributes: {id: UART_CLK_SRC}
     children:
@@ -24,6 +24,6 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart2, value: '42000000'}
+        attributes: {id: uart2, value: '100000000'}
 - type: ElementPosition
   attributes: {x: '187', y: '186', id: uart2}
