@@ -5,6 +5,7 @@
 #include "COBS.hpp"
 #include "task.h"
 #include "CAN/ApplicationLayer.hpp"
+#include "TaskInitialization.hpp"
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>),
@@ -51,6 +52,12 @@ void TCHandlingTask::ingress() {
 }
 
 void TCHandlingTask::execute() {
+    while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
+        LOG_DEBUG<<"TC Handling found the semaphore locked";
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+    releaseSemaphoreGroup(smphr_groups::GROUP_A);
+    
     while (true) {
         xQueueReceive(messageQueueHandle, static_cast<void *>(&messageOut), portMAX_DELAY);
 

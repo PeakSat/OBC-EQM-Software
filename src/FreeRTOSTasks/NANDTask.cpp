@@ -7,8 +7,9 @@
 #include "TaskInitialization.hpp"
 
 void NANDTask::execute() {
+    vTaskDelay(pdMS_TO_TICKS(1000));
     LOG_DEBUG << "Runtime init: " << this->TaskName;
-    while(!takeSemaphoreGroupA()){
+    while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
         LOG_DEBUG << "NAND Found semaphore Locked";
         vTaskDelay(pdMS_TO_TICKS(500));
     }
@@ -33,9 +34,9 @@ void NANDTask::execute() {
             failedTries++;
         }
     }
-    releaseSemaphoreGroupA();
+    releaseSemaphoreGroup(smphr_groups::GROUP_A);
     while (true) {
-        while(!takeSemaphoreGroupA()){
+        while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
             LOG_DEBUG << "NAND Found semaphore Locked";
             vTaskDelay(pdMS_TO_TICKS(500));
         }
@@ -160,7 +161,7 @@ void NANDTask::execute() {
                 failedTries++;
             }
         }
-        releaseSemaphoreGroupA();
+        releaseSemaphoreGroup(smphr_groups::GROUP_A);
     //    LOG_DEBUG << "Runtime is exiting: " << this->TaskName;
     //    LOG_DEBUG << "Runtime is resumming MRAM";
     //    vTaskResume(MRAMTask::mramTaskHandle);

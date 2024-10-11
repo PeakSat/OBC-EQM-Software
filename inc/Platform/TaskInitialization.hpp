@@ -11,12 +11,18 @@
 #include "CANTestTask.hpp"
 #include "semphr.h"
 
+enum smphr_groups{
+    GROUP_A,
+    GROUP_B,
+    GROUP_C
+};
+
 void initializeTasks();
 
 void initializeSemaphores();
 
-bool takeSemaphoreGroupA();
+bool takeSemaphoreGroup(smphr_groups group);
 
-void releaseSemaphoreGroupA();
+void releaseSemaphoreGroup(smphr_groups group);
 
 void resetChecks();

@@ -24,8 +24,9 @@ bool MRAMTask::isMRAMAlive() {
 
 void MRAMTask::execute() {
     LOG_DEBUG << "Runtime init: " << this->TaskName;
+    vTaskDelay(pdMS_TO_TICKS(500));
 //    vTaskSuspend(NULL);
-    while(!takeSemaphoreGroupA()){
+    while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
         LOG_DEBUG << "MRAM Found semaphore Locked";
         vTaskDelay(pdMS_TO_TICKS(500));
     }
@@ -38,10 +39,10 @@ void MRAMTask::execute() {
 
     uint32_t randomAddressOffset = 0;
     uint8_t randomValueOffset = 0, readData = 0;
-    releaseSemaphoreGroupA();
+    releaseSemaphoreGroup(smphr_groups::GROUP_A);
 
     while (true) {
-        while(!takeSemaphoreGroupA()){
+        while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
             LOG_DEBUG << "MRAM Found semaphore Locked";
             vTaskDelay(pdMS_TO_TICKS(500));
         }
@@ -87,7 +88,7 @@ void MRAMTask::execute() {
         // LOG_DEBUG << "Runtime is resuming Amb Temp";
         // vTaskResume(ambientTemperatureTask->ambientTemperatureTaskHandle);
         // vTaskSuspend(NULL);
-        releaseSemaphoreGroupA();
+        releaseSemaphoreGroup(smphr_groups::GROUP_A);
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

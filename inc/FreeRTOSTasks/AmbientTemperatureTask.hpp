@@ -32,7 +32,7 @@ private:
      */
     etl::array<float, NumberOfTemperatureSensors> ambientTemperature = {0, 0};
 
-    const static inline uint16_t TaskStackDepth = 10000;
+    const static inline uint16_t TaskStackDepth = 3000;
 
     StackType_t taskStack[TaskStackDepth];
 

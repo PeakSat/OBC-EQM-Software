@@ -140,7 +140,7 @@ static void CLK_ProgrammableClockInitialize(void)
 
     /* Configure selected programmable clock    */
     PMC_REGS->PMC_PCK[4]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(1);
-    PMC_REGS->PMC_PCK[5]= PMC_PCK_CSS_MCK | PMC_PCK_PRES(1);
+    PMC_REGS->PMC_PCK[5]= PMC_PCK_CSS_PLLA_CLK | PMC_PCK_PRES(5);
 
     /* Enable selected programmable clock   */
     PMC_REGS->PMC_SCER =    PMC_SCER_PCK4_Msk | PMC_SCER_PCK5_Msk;

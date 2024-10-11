@@ -16,7 +16,7 @@
 #include "MRAMTask.hpp"
 #include "PayloadTestTask.hpp"
 
-#define IDLE_TASK_SIZE 1400
+#define IDLE_TASK_SIZE 1000
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
@@ -37,31 +37,40 @@ extern "C" void main_cpp() {
 
     // initializeTasks();
     initializeSemaphores();
+
     uartGatekeeperTask.emplace();
-    // timeKeepingTask.emplace();
-    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
-    // mcuTemperatureTask.emplace();
-    // tcHandlingTask.emplace();
-    // housekeepingTask.emplace();
-    // canGatekeeperTask.emplace();
-    // canTestTask.emplace();
-    // payloadTestTask.emplace();
+
     nandTask.emplace();
+    payloadTestTask.emplace();
+    canGatekeeperTask.emplace();
+    canTestTask.emplace();
+    housekeepingTask.emplace();
+    tcHandlingTask.emplace();
+    mcuTemperatureTask.emplace();
+    ambientTemperatureTask.emplace();
     mramTask.emplace();
+    timeKeepingTask.emplace();
+    
+    watchdogTask.emplace();
+    
+
+    __disable_irq();
 
     uartGatekeeperTask->createTask();
-    ambientTemperatureTask->createTask();
-    // mcuTemperatureTask->createTask();
-    // timeKeepingTask->createTask();
-    watchdogTask->createTask();
-    // tcHandlingTask->createTask();
-    // housekeepingTask->createTask();
-    // canGatekeeperTask->createTask();
-    // canTestTask->createTask();
-    // payloadTestTask->createTask();
+
     nandTask->createTask();
+    payloadTestTask->createTask();
+    canGatekeeperTask->createTask();
+    canTestTask->createTask();
+    housekeepingTask->createTask();
+    tcHandlingTask->createTask();
+    mcuTemperatureTask->createTask();
+    ambientTemperatureTask->createTask();
     mramTask->createTask();
+    timeKeepingTask->createTask();
+    
+    watchdogTask->createTask();
+    __enable_irq();
     
 
 //    resetChecks();

@@ -18,9 +18,30 @@ private:
 
     uint8_t ucQueueStorageArea[UARTQueueSize * sizeof(etl::string<LOGGER_MAX_MESSAGE_SIZE>)];
 
-    const static inline uint16_t TaskStackDepth = 2000;
+    const static inline uint16_t TaskStackDepth = 3000;
 
     StackType_t taskStack[TaskStackDepth];
+
+    /**
+     * This variable is used to store a task handle for a UART gatekeeper task.
+     * The uartGatekeeperTaskHandle and the task notification mechanism are used to coordinate
+     * and synchronize the UART gatekeeper task with the completion of the XDMAC transfer.
+     * It allows the UART gatekeeper task to efficiently wait for and respond to these events
+     * without continuously polling for their completion.
+     */
+    inline static TaskHandle_t uartGatekeeperTaskHandle = nullptr;
+
+    /**
+     * This variable is used to store the status of a Direct Memory Access (DMA) transaction event
+     * in order to check for errors during the XDMAC transfer.
+     */
+    inline static XDMAC_TRANSFER_EVENT dmaTransactionStatus = XDMAC_TRANSFER_NONE;
+
+    /**
+     * This variable is used to store the maximum time the task should wait for the notification in ticks.
+     * The number 1000ms was considered a good value arbitrarily
+     */
+    TickType_t maxDelay = pdMS_TO_TICKS(1000);
 
 public:
     void execute();
@@ -29,7 +50,7 @@ public:
 
     /**
      * Adds an etl::string to the UART Gatekeeper's queue.
-     * 
+     *
      * This function was added as an extra abstraction layer to house the `xQueueSendToBack` function.
      * It can be used from anywhere in the code to get access to the UART queue/UART Gatekeeper task, without having to
      * know the low level details of the queue.
@@ -42,10 +63,10 @@ public:
     }
 
     void createTask() {
-        xTaskCreateStatic(vClassTask < UARTGatekeeperTask > , this->TaskName, UARTGatekeeperTask::TaskStackDepth, this,
-                          tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
+        uartGatekeeperTaskHandle = xTaskCreateStatic(vClassTask < UARTGatekeeperTask > , this->TaskName,
+                                                     UARTGatekeeperTask::TaskStackDepth, this,
+                                                     tskIDLE_PRIORITY + 3, this->taskStack, &(this->taskBuffer));
     }
-
 };
 
 inline std::optional<UARTGatekeeperTask> uartGatekeeperTask;

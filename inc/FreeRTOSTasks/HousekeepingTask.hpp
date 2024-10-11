@@ -8,7 +8,7 @@
  */
 class HousekeepingTask : public Task {
 public:
-    const static inline uint16_t TaskStackDepth = 4000;
+    const static inline uint16_t TaskStackDepth = 3000;
 
     StackType_t taskStack[TaskStackDepth];
 
@@ -24,7 +24,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
-                          this, tskIDLE_PRIORITY + 2, this->taskStack,
+                          this, tskIDLE_PRIORITY + 1, this->taskStack,
                           &(this->taskBuffer));
     }
 

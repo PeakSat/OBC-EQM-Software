@@ -1,6 +1,7 @@
 #include "WatchdogTask.hpp"
 
 void WatchdogTask::execute() {
+    vTaskDelay(pdMS_TO_TICKS(400));
     while (true) {
 
 //        LOG_DEBUG << "Runtime entered: " << this->TaskName;

@@ -1,7 +1,9 @@
 #include "TimeKeepingTask.hpp"
 
 void TimeKeepingTask::execute() {
+    vTaskDelay(pdMS_TO_TICKS(1500));
     LOG_DEBUG << "Runtime init: " << this->TaskName;
+    
     static tm dateTime;
     setEpoch(dateTime);
     RTC_TimeSet(&dateTime);

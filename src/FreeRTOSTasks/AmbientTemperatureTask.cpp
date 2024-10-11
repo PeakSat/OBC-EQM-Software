@@ -3,7 +3,7 @@
 #include "TaskInitialization.hpp"
 
 void AmbientTemperatureTask::execute() {
-    while(!takeSemaphoreGroupA()){
+    while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
         LOG_DEBUG << "AMB_TEMP Found semaphore Locked";
         vTaskDelay(pdMS_TO_TICKS(500));
     }
@@ -20,17 +20,17 @@ void AmbientTemperatureTask::execute() {
 
     if (numberOfDisconnectedSensors == NumberOfTemperatureSensors) {
         LOG_ERROR << "Suspending ambient temperature task";
-        releaseSemaphoreGroupA();
+        releaseSemaphoreGroup(smphr_groups::GROUP_A);
         vTaskSuspend(taskHandle);
     }
     LOG_DEBUG<<"No errors on ambient temperatures";
 
-    releaseSemaphoreGroupA();
+    releaseSemaphoreGroup(smphr_groups::GROUP_A);
 
 
     while (true) {
         LOG_DEBUG << "Runtime entered: " << this->TaskName;
-        while(!takeSemaphoreGroupA()){
+        while(!takeSemaphoreGroup(smphr_groups::GROUP_A)){
             LOG_DEBUG << "AMB_TEMP Found semaphore Locked";
             vTaskDelay(pdMS_TO_TICKS(500));
         }
@@ -48,7 +48,7 @@ void AmbientTemperatureTask::execute() {
         CommonParameters::boardTemperature1.setValue(ambientTemperature[0]);
         CommonParameters::boardTemperature2.setValue(ambientTemperature[1]);
         LOG_DEBUG << "Exiting Amb temperature";
-        releaseSemaphoreGroupA();
+        releaseSemaphoreGroup(smphr_groups::GROUP_A);
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

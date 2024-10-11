@@ -28,7 +28,7 @@ bool sendPayloadStatus(){
 
 bool sendPayloadMessage(uint8_t* msg, size_t msg_size){
     bool status = false;
-
+    
     if(sendPayloadStatus()){
         PIO_PinWrite(PAYLOAD_TX_ENABLE_PIN, true);
         status = UART2_Write(msg, msg_size);
