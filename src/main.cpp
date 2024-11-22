@@ -6,15 +6,7 @@
 #include "definitions.h"
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
-#include "HousekeepingTask.hpp"
-#include "TimeBasedSchedulingTask.hpp"
-#include "StatisticsReportingTask.hpp"
-#include "CANGatekeeperTask.hpp"
-#include "CANTestTask.hpp"
-#include "TCHandlingTask.hpp"
-#include "NANDTask.hpp"
-#include "MRAMTask.hpp"
-#include "PayloadTestTask.hpp"
+#include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 200
 
@@ -34,34 +26,9 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
+    initializationTask.emplace();
 
-    uartGatekeeperTask.emplace();
-    timeKeepingTask.emplace();
-//    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
-    mcuTemperatureTask.emplace();
-    tcHandlingTask.emplace();
-    housekeepingTask.emplace();
-    canGatekeeperTask.emplace();
-    canTestTask.emplace();
-    payloadTestTask.emplace();
-//    nandTask.emplace();
-//    mramTask.emplace();
-
-
-//    ambientTemperatureTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-    uartGatekeeperTask->createTask();
-    watchdogTask->createTask();
-    tcHandlingTask->createTask();
-    housekeepingTask->createTask();
-    canGatekeeperTask->createTask();
-    canTestTask->createTask();
-    payloadTestTask->createTask();
-//    nandTask->createTask();
-//    mramTask->createTask();
-
+    initializationTask->createTask();
     vTaskStartScheduler();
 
     while (true) {

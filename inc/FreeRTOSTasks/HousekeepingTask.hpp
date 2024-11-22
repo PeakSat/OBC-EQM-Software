@@ -19,11 +19,13 @@ public:
 
     HousekeepingTask() : Task("Housekeeping") {}
 
+    static inline TaskHandle_t housekeepingTaskHandle;
+
     /**
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
+        housekeepingTaskHandle = xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
                           this, configMAX_PRIORITIES - 1, this->taskStack,
                           &(this->taskBuffer));
     }

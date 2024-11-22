@@ -75,6 +75,6 @@ namespace CAN {
      * CAN Nodes, as specified in DDJF_OBDH.
      */
     enum NodeIDs : uint8_t {
-        OBC = 0x0, COMMS = 0x1, ADCS = 0x2, SU = 0x3, ExternalMCU = 0x4
+        OBC = 0x0, COMMS = 0x1, ADCS = 0x2, SU = 0x3, RED = 0x6
     };
 }

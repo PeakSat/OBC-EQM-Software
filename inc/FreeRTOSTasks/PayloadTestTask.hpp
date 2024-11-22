@@ -19,11 +19,13 @@ public:
 
     PayloadTestTask() : Task("Payload Test") {}
 
+    static inline TaskHandle_t payloadtaskHandle;
+
     /**
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask < PayloadTestTask > , this->TaskName, PayloadTestTask::TaskStackDepth, this,
+        payloadtaskHandle = xTaskCreateStatic(vClassTask < PayloadTestTask > , this->TaskName, PayloadTestTask::TaskStackDepth, this,
                           configMAX_PRIORITIES - 1, this->taskStack, &(this->taskBuffer));
     }
 };

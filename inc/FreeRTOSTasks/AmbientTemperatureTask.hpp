@@ -39,10 +39,13 @@ private:
 public:
     void execute();
 
+    static inline TaskHandle_t ambientTempTaksHandle;
+
+
     AmbientTemperatureTask() : Task("ExternalTemperatureSensors") {}
 
     void createTask() {
-        taskHandle = xTaskCreateStatic(vClassTask < AmbientTemperatureTask > , this->TaskName,
+        ambientTempTaksHandle = xTaskCreateStatic(vClassTask < AmbientTemperatureTask > , this->TaskName,
                                        AmbientTemperatureTask::TaskStackDepth, this,
                                        tskIDLE_PRIORITY + 2, this->taskStack,
                                        &(this->taskBuffer));

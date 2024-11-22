@@ -53,6 +53,8 @@ public:
 
     TCHandlingTask();
 
+    static inline TaskHandle_t tcHandlingTaskHandle;
+
     /**
      * Resets the savedMessage input buffer.
      */
@@ -72,7 +74,7 @@ public:
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this,
+        tcHandlingTaskHandle = xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this,
                           tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 

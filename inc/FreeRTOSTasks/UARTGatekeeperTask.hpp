@@ -27,6 +27,8 @@ public:
 
     UARTGatekeeperTask();
 
+    static inline TaskHandle_t uartTaskHandle;
+
     /**
      * Adds an etl::string to the UART Gatekeeper's queue.
      * 
@@ -42,7 +44,7 @@ public:
     }
 
     void createTask() {
-        xTaskCreateStatic(vClassTask < UARTGatekeeperTask > , this->TaskName, UARTGatekeeperTask::TaskStackDepth, this,
+        uartTaskHandle = xTaskCreateStatic(vClassTask < UARTGatekeeperTask > , this->TaskName, UARTGatekeeperTask::TaskStackDepth, this,
                           tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 
