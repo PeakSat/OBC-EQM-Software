@@ -12,8 +12,6 @@
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
-#include "NANDTask.hpp"
-#include "MRAMTask.hpp"
 #include "PayloadTestTask.hpp"
 
 #define IDLE_TASK_SIZE 200
@@ -37,7 +35,7 @@ extern "C" void main_cpp() {
 
     uartGatekeeperTask.emplace();
     timeKeepingTask.emplace();
-//    ambientTemperatureTask.emplace();
+    ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     mcuTemperatureTask.emplace();
     tcHandlingTask.emplace();
@@ -45,11 +43,10 @@ extern "C" void main_cpp() {
     canGatekeeperTask.emplace();
     canTestTask.emplace();
     payloadTestTask.emplace();
-//    nandTask.emplace();
-//    mramTask.emplace();
 
 
-//    ambientTemperatureTask->createTask();
+
+    ambientTemperatureTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
     uartGatekeeperTask->createTask();
@@ -59,8 +56,7 @@ extern "C" void main_cpp() {
     canGatekeeperTask->createTask();
     canTestTask->createTask();
     payloadTestTask->createTask();
-//    nandTask->createTask();
-//    mramTask->createTask();
+
 
     vTaskStartScheduler();
 
