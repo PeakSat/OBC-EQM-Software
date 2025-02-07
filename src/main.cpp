@@ -7,6 +7,13 @@
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
 #include "InitializationTask.hpp"
+#include "HousekeepingTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "StatisticsReportingTask.hpp"
+#include "CANGatekeeperTask.hpp"
+#include "CANTestTask.hpp"
+#include "TCHandlingTask.hpp"
+#include "PayloadTestTask.hpp"
 
 #define IDLE_TASK_SIZE 200
 
