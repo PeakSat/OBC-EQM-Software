@@ -21,7 +21,7 @@ namespace CAN::Application {
             {COMMS,       "COMMS"},
             {ADCS,        "ADCS"},
             {SU,          "SU"},
-            {ExternalMCU, "External"}
+            {RED,         "RED"}
     };
 
     /**
@@ -40,7 +40,8 @@ namespace CAN::Application {
         LogMessage = 0x40,
         UTCTime = 0x200,
         BusSwitchover = 0x400,
-        Heartbeat = 0x700
+        Heartbeat = 0x700,
+        WakeUpRedundant = 0x50
     };
 
     /**

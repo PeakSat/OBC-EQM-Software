@@ -6,6 +6,7 @@
 #include "definitions.h"
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
+#include "InitializationTask.hpp"
 #include "HousekeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
@@ -32,32 +33,9 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
+    initializationTask.emplace();
 
-    uartGatekeeperTask.emplace();
-    timeKeepingTask.emplace();
-    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
-    mcuTemperatureTask.emplace();
-    tcHandlingTask.emplace();
-    housekeepingTask.emplace();
-    canGatekeeperTask.emplace();
-    canTestTask.emplace();
-    payloadTestTask.emplace();
-
-
-
-    ambientTemperatureTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-    uartGatekeeperTask->createTask();
-    watchdogTask->createTask();
-    tcHandlingTask->createTask();
-    housekeepingTask->createTask();
-    canGatekeeperTask->createTask();
-    canTestTask->createTask();
-    payloadTestTask->createTask();
-
-
+    initializationTask->createTask();
     vTaskStartScheduler();
 
     while (true) {

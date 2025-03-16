@@ -63,8 +63,6 @@ include_directories(/opt/microchip/mplabx/v5.45/packs/arm/CMSIS/5.4.0/CMSIS/Core
 include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
 include_directories(lib/atsam-component-drivers/MCP9808/inc)
-include_directories(lib/atsam-component-drivers/SMC/inc)
-include_directories(lib/atsam-component-drivers/MRAM/inc)
 include_directories(lib/atsam-component-drivers/LCL/inc)
 include_directories(lib/cobs-c)
 

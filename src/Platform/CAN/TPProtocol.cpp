@@ -103,6 +103,12 @@ void TPProtocol::parseMessage(TPMessage &message) {
             LOG_DEBUG << logSource.c_str() << logData.c_str();
         }
             break;
+        case CAN::Application::WakeUpRedundant:{
+            REDModeInit();
+            LOG_DEBUG<< "Redundant Mode initiated";
+        }
+            break;
+
         default:
             LOG_INFO<<"CAN Message of Unknown type";
             // ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);

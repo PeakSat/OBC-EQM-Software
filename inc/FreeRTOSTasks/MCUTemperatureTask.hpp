@@ -18,8 +18,10 @@ public:
 
     MCUTemperatureTask() : Task("MCUTemperatureSensor") {}
 
+    static inline TaskHandle_t mcuTempTaskHandle;
+
     void createTask() {
-        xTaskCreateStatic(vClassTask<MCUTemperatureTask>, this->TaskName, MCUTemperatureTask::TaskStackDepth, this,
+        mcuTempTaskHandle = xTaskCreateStatic(vClassTask<MCUTemperatureTask>, this->TaskName, MCUTemperatureTask::TaskStackDepth, this,
                           tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 
